@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var sequelize = require('sequelize');
-
+var users = require('./models').Users;
 // ********* sync db
 // var SeqBurger = require('./models').SeqBurger;
 // SeqBurger.sync();
@@ -34,28 +34,42 @@ app.set('view engine', 'handlebars');
 
 
 app.get('/', function(req, res) {
-    SeqBurger.findAll({}).then(function(sq_data) {
-        // console.log(sq_data);
-        res.render('index', {
-            burgers: sq_data  //refers to the burgers in index.handlebars
-        })
-    }).catch(function(err) {
-        if (err) {
-            throw err;
-        }
-    })
+    // SeqBurger.findAll({}).then(function(sq_data) {
+    //     // console.log(sq_data);
+    //     res.render('index', {
+    //         burgers: sq_data  //refers to the burgers in index.handlebars
+    //     })
+    // }).catch(function(err) {
+    //     if (err) {
+    //         throw err;
+    //     }
+    // })
+    res.render('signup');
+
 });
 
-app.post('/newBurger/create', function(req, res) {
-    SeqBurger.create({
-        name: req.body.name,
-        devoured: false
-    }).then(function(sq_response) {
-        // console.log(sq_response);
-        res.redirect('/')
+app.post('/signUp', function(req, res) {
+    // SeqBurger.create({
+    //     name: req.body.name,
+    //     devoured: false
+    // }).then(function(sq_response) {
+    //     // console.log(sq_response);
+    //     res.redirect('/')
+    // }).catch(function(err) {
+    //     throw err;
+    // })
+    users.create({
+        FirstName: req.body.firstName,
+        LastName: req.body.lastName,
+        Email: req.body.email,
+        UserName: req.body.userName,
+        Password: req.body.password,
+        ImageLink: req.body.image
+    }).then(function() {
+        res.redirect('/');
     }).catch(function(err) {
         throw err;
-    })
+    });
 
 });
 

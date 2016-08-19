@@ -1,0 +1,22 @@
+
+.burgerDivs {
+	background-color: #ccc;
+	margin: 10px 0px 10px 0px;
+	text-align: center;
+	padding: 10px;
+}
+
+#header {
+	text-align: center;
+	background-color: #ccc;
+}
+.burgers {
+	text-align: center;
+	margin: 10px;
+
+}
+
+#makeBurger {
+	text-align: center;
+	margin: 10px;
+}
