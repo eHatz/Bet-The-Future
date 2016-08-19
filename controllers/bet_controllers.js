@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/signUp', function(req, res) {
-	console.log(models.Users);
+
 	models.Users.create({
 		FirstName: req.body.firstName,
 		LastName: req.body.lastName,
@@ -25,7 +25,7 @@ router.post('/signUp', function(req, res) {
 		throw err;
 	});
 
-	});
+});
 
 router.post('/devoured/:id', function(req, res){
 	models.burgers.update( 

@@ -3,8 +3,6 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
 var sequelize = require('sequelize');
-var users = require('./models').Users;
-
 var routes = require('./controllers/bet_controllers.js');
 
 var app = express();
