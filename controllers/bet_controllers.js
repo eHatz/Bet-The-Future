@@ -4,21 +4,18 @@ var bodyParse = require('body-parser');
 var router = express.Router();
 var models = require('../models');
 
-router.get('/', function(req, res) {
-
-    res.render('login'); //uses home.handlebars
-
+router.get('/', function (req, res) {
+	res.render('login')
 });
-
 router.get('/signup', function(req, res) {
 
-    res.render('signup'); // uses signup.handlebars
+	res.render('signup'); // uses signup.handlebars
 
 });
 
 router.get('/home', function(req, res) {
 
-    res.render('home'); //uses login.handlebars
+	res.render('home'); //uses login.handlebars
 
 });
 
