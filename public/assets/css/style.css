@@ -38,6 +38,7 @@ img{
 	position: absolute;
 	transform: translateY(-10%);
 	top: 50%;
+	margin-top: 10px;
 }
 
 
