@@ -1,22 +1,8 @@
-
-.burgerDivs {
-	background-color: #ccc;
-	margin: 10px 0px 10px 0px;
-	text-align: center;
-	padding: 10px;
+html {
+	height: 100%;
+	background: url('landing_packground.png') no-repeat center center;
+	background-size: cover;
 }
-
-#header {
-	text-align: center;
-	background-color: #ccc;
-}
-.burgers {
-	text-align: center;
-	margin: 10px;
-
-}
-
-#makeBurger {
-	text-align: center;
-	margin: 10px;
+body{
+	background-color: transparent;
 }
