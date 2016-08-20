@@ -6,7 +6,19 @@ var models = require('../models');
 
 router.get('/', function(req, res) {
 
-	res.render('signup');
+    res.render('login'); //uses home.handlebars
+
+});
+
+router.get('/signup', function(req, res) {
+
+    res.render('signup'); // uses signup.handlebars
+
+});
+
+router.get('/home', function(req, res) {
+
+    res.render('home'); //uses login.handlebars
 
 });
 
