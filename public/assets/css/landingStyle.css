@@ -22,10 +22,9 @@ button{
 	color: yellow;
 	font-family: 'Lato', sans-serif;
 }
-h3{
-	font-family: 'Lato', sans-serif;
-	color: yellow;
-/*	margin-top: 300px;*/
+h1{
+	font-family: 'Fascinate Inline', cursive;
+	color: #ffee54;
 }
 img{
 	
@@ -36,10 +35,14 @@ img{
 	background-size: cover;
 	background-repeat: no-repeat;
 	position: absolute;
-	transform: translateY(-10%);
-	top: 50%;
-	margin-top: 30px;
+	transform: translateY(-20%);
+	top: 66%;
+	
 }
+.btn-default {
+    color: white;
+    background-color: #00babf;
+    border-color: #04a3a3;
 
 
 
