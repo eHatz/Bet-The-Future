@@ -7,6 +7,25 @@ var models = require('../models');
 router.get('/', function (req, res) {
 	res.render('login')
 });
+router.post('/login', function(req, res) {
+	console.log(req.body)
+	models.Users.findAll({ where: {UserName: req.body.username}}).then(function(data) {
+		
+		var formPassword = req.body.password;
+		var userPassword = data[0].Password;
+		if (data.length === 0 || formPassword !== userPassword) {
+			console.log('invalid Username/Password');
+			res.redirect('/');
+		} else if (data.length > 0 && formPassword === userPassword) {
+			console.log('Welcome!');
+			res.redirect('/home');
+		};
+		
+	}).catch(function(err) {
+		throw err;
+	});
+
+});
 router.get('/signup', function(req, res) {
 
 	res.render('signup'); // uses signup.handlebars
@@ -45,7 +64,12 @@ router.post('/devoured/:id', function(req, res){
 	})
 });
 
+
+
+
 module.exports = router;
+
+
 
 // app.get('/', function(req, res) {
 //     // SeqBurger.findAll({}).then(function(sq_data) {
