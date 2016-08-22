@@ -1,24 +1,32 @@
+
 var express = require('express');
 var methodO = require('method-override');
 var bodyParse = require('body-parser');
 var router = express.Router();
 var models = require('../models');
 
+//=============Login Render========================
 router.get('/', function (req, res) {
 	res.render('login')
 });
+
+//============Signup Render=========================group
 router.get('/signup', function(req, res) {
 
 	res.render('signup'); // uses signup.handlebars
 
 });
 
+//==============HOME================================
 router.get('/home', function(req, res) {
 
 	res.render('home'); //uses login.handlebars
 
 });
 
+//===================================================
+
+//=============Signup Post===========================
 router.post('/signUp', function(req, res) {
 
 	models.Users.create({
@@ -36,14 +44,7 @@ router.post('/signUp', function(req, res) {
 
 });
 
-router.post('/devoured/:id', function(req, res){
-	models.burgers.update( 
-		{devoured: true}, 
-		{where: {id: req.body.id}}
-	).then(function() {
-		res.redirect('/')
-	})
-});
+
 
 module.exports = router;
 
