@@ -7,6 +7,7 @@ var models = require('../models');
 router.get('/', function (req, res) {
 	res.render('login')
 });
+
 router.post('/login', function(req, res) {
 	console.log(req.body)
 	models.Users.findAll({ where: {UserName: req.body.username}}).then(function(data) {

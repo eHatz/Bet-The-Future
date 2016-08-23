@@ -15,7 +15,6 @@ var User = models.Users; //correct?
 var app = express();
 var router = express.Router();
 
-
 //Middleware
 app.use(express.session({ secret: 'dromedary_Stampede' }));
 app.use(passport.initialize());
@@ -48,6 +47,7 @@ app.listen(port, function() {
 
 /*Notes
 
+
 */
 
 passport.use(new LocalStrategy(
@@ -59,7 +59,7 @@ passport.use(new LocalStrategy(
     	if (!user){
         	return done(null, false, {message: 'Incorrect username.'});
       	}
-     	if (!user.validPassword(password)){
+     	if (!user.validPassword(loginPassword)){
         	return done(null, false, { message: 'Incorrect password.' });
       	}
       	//Successful, login
@@ -67,3 +67,23 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+
+// //First option: Authentication with a plain callback function
+// app.post('/login', 
+// 	passport.authenticate('local'),
+// 	function(request, response){
+// 		// If this function gets called, authentication was successful.
+// 		console.log(response.user)
+// 		//response.redirect('/users/' + request.user.username);
+// 	}
+// );
+
+//Authentication with an object to handle redirecting
+app.post('/login',
+	passport.authenticate('local',{ 
+		successRedirect: '/home',
+		failureRedirect: '/login' 
+	});
+);
+
+
