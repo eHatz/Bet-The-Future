@@ -1,0 +1,95 @@
+html {
+	height: 100%;
+	background: url('home_background.png') no-repeat;
+	background-size: cover;
+}
+body{
+	background-color: transparent;
+}
+
+
+
+.cloudDiv1{
+	background-image: url("../images/cloud.png");
+	background-position: -100% 0%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: absolute;
+	transform: translateY(-50%);
+	top:65%;
+	width: 800px;
+	height: 600px;
+}
+form{
+	margin-top: 35px;
+
+}
+input{
+	border: 2px solid;
+    border-radius: 15px;
+    padding: 25px;
+}
+.form-control {
+	padding-top:  23px;
+	padding-bottom: 23px;
+	background-color: #ffcb42;
+	color: white;
+	font-size: 18px;
+	border: 2px solid #00bbba;
+	border-radius: 11px;
+
+}
+h1{
+	font-family: 'Fascinate Inline', cursive;
+	color: #683b00;
+	letter-spacing: -1px;
+	text-align: center;
+}
+label{
+	font-size: 15px;
+	color: #00bbba;
+	font-weight: bold;
+}
+.btn-default {
+    color: white;
+    background-color: #00babf;
+    border-color: #04a3a3;
+}
+.cloudDiv2{
+	background-image: url("../images/cloud.png");
+	background-position: -100% 0%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: absolute;
+	transform: translateY(-50%);
+	top:139%;
+	width: 800px;
+	height: 600px;
+}
+
+.placeholder{
+	color: white;
+}
+
+#cloud2{
+	margin-top: 35px;
+}
+#searchButton{
+	margin-left: 10px;
+	border: 2px solid #00bbba;
+	border-radius: 5px;
+}
+#searchBox{
+	border: 2px solid #00bbba;
+	border-radius: 11px;
+}
+ #navBar{ 
+    float: right;
+    margin-top: 27px;
+}
+li{
+	color: #ffcb42;
+
+}
+
+
