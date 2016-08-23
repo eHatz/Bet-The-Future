@@ -61,21 +61,16 @@ router.post('/signUp', function(req, res) {
 
 });
 
-router.post('/devoured/:id', function(req, res){
-	models.burgers.update( 
-		{devoured: true}, 
-		{where: {id: req.body.id}}
-	).then(function() {
-		res.redirect('/')
-	})
-});
-
-
-
-
 module.exports = router;
 
-
+// router.post('/devoured/:id', function(req, res){
+// 	models.burgers.update( 
+// 		{devoured: true}, 
+// 		{where: {id: req.body.id}}
+// 	).then(function() {
+// 		res.redirect('/')
+// 	})
+// });
 
 // app.get('/', function(req, res) {
 //     // SeqBurger.findAll({}).then(function(sq_data) {
