@@ -4,6 +4,8 @@ var bodyParse = require('body-parser');
 var router = express.Router();
 var models = require('../models');
 
+
+
 router.get('/', function (req, res) {
 	res.render('login')
 });
@@ -31,9 +33,15 @@ router.get('/signup', function(req, res) {
 });
 
 router.get('/home', function(req, res) {
-
-	res.render('home'); //uses login.handlebars
-
+	models.betTable.findAll({}).then(function(single_bet) {
+		res.render('home', {
+			bet: single_bet
+		})
+	}).catch(function(err){
+		if(err){
+			throw err;
+		}
+	})
 });
 
 router.get('/profile', function(req, res) {
@@ -60,16 +68,18 @@ router.post('/signUp', function(req, res) {
 
 });
 
-router.post('/devoured/:id', function(req, res){
-	models.burgers.update( 
-		{devoured: true}, 
-		{where: {id: req.body.id}}
-	).then(function() {
-		res.redirect('/')
+router.post('/home', function(req, res){
+	console.log(req.body);
+	models.betTable.create({
+		prediction: req.body.prediction,
+		price:req.body.price
+	}).then(function(bet_response){
+		console.log(bet_response);
+		res.redirect('home')
+	}).catch(function(err){
+		throw err;
 	})
-});
-
-
+});	
 
 
 module.exports = router;
