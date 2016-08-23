@@ -1,14 +1,9 @@
 //Dependencies
 var methodO = require('method-override');
 var bodyParse = require('body-parser');
-var bcrypt = require('bcrypt-nodejs');
-var passport = require('passport');
-	//we may not need session anymore - passport claims to handle this functionality
-var session = require('express-session');
-var LocalStrategy = require('passport-local').Strategy;
-var express = require('express');
-var router = express.Router();
-var models = require('../models');
+
+
+
 
 router.get('/', function (req, res) {
 	res.render('login')
@@ -84,6 +79,7 @@ router.post("/login",
 		failureRedirect: "/login"
 	})
 );
+
 
 module.exports = router;
 
