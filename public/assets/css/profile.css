@@ -12,13 +12,23 @@ body{
     background: white;
     background-color: transparent
     padding: 20px;
-    width: 95%;
-    height: 70px;
-    margin-top: 3%;
+    width: 55%;
+    height: 75px;
+    margin-top: 13%;
     opacity: .6;
+    margin-left: 25%;
 }
 
 h5{
 	color: #00bbba;
 	padding: 5px;
+	margin-bottom: 0;
+}
+
+img{
+
+
+}
+.betBox{
+
 }
