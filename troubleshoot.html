@@ -1,5 +1,11 @@
-<link rel="stylesheet" type="text/css" href="/assets/css/homeStyle.css">
-
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<link rel="stylesheet" type="text/css" href="/assets/css/homeStyle.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+</head>
+<body>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -9,43 +15,43 @@
 	</div>
 
 	<div class='row'>
-		<div class=" col-md-offset-2 col-md-7 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-6 cloudDiv1" id='makeBet'>
+		<div class="col-md-offset-2 col-md-7 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-6 cloudDiv1" id='makeBet'>
 			<div class="row">
 				<div class="col-md-offset-3 col-md-7 col-sm-offset-4 col-sm-5 co-lg-7">
 					
-					<form method="POST" action="/home" class="form-horizontal">
+					<form class="form-horizontal">
 
 						<div class="form-group">
+						<div class="col-md-10">
+							<h1>Make A Bet</h1>
+							<label for="predition">Prediction:</label>
+							<input type="prediction" class="form-control" id="inputPrediction" >
+						</div>
+						</div>
+						<div class="form-group">
 							<div class="col-md-10">
-								<h1>Make A Bet</h1>
-								<label for="predition">Prediction:</label>
-								<input type="text" name="prediction" class="form-control" id="inputPrediction" >
+								<label for="referee">Referee:</label>
+								<input type="referee" class="form-control" id="inputReferee">
 							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-10">
+								<label for="cash">Cash, Homie:</label>
+								<input type="cash" class="form-control" id="inputCash">
+								<label for="judgementDay">Judgement Day:</label>
+								<input type="judgementDay" class="form-control" id="inputJudgementDay">
 							</div>
-							<div class="form-group">
-								<div class="col-md-10">
-									<label for="referee">Referee:</label>
-									<input type="text" name="referee" class="form-control" id="inputReferee">
-								</div>
+						</div>
+					
+						<div class="form-group">
+							<div class="text-center col-md-10">
+								<button type="submit" class="btn btn-default">Let's Do This!</button>
 							</div>
-							<div class="form-group">
-								<div class="col-md-10">
-									<label for="cash">Cash, Homie:</label>
-									<input type="text" name="price" class="form-control" id="inputCash">
-									<label for="judgementDay">Judgement Day:</label>
-									<input type="judgementDay" class="form-control" id="inputJudgementDay">
-								</div>
-							</div>
-						
-							<div class="form-group">
-								<div class="text-center col-md-10">
-									<button type="submit" class="btn btn-default">Let's Do This!</button>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="col-md-2 friendsBar">
-						{{!-- <h1>Friends</h1> --}}
+						</div>
+					</form>
+				</div>
+				<div class="col-md-2 friendsBar">
+					{{!-- <h1>Friends</h1> --}}
 				</div>
 			</div>
 		</div>
@@ -68,8 +74,8 @@
 							<div id="cloud2" class="col-md-offset-0 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6">
 						  		<div id="betContainer">
 									{{! {{bets}}
-										{{#each bet}}
-											{{> bet_info this}}
+										{{#each bets}}
+											{{> bet_info bet }}
 												<div class="betBox">
 												    <div class="usrPic">
 												    </div>
@@ -82,15 +88,16 @@
 												    </div>
 												    <div class="betInfo">
 												        <div class="prediction">
-												            <p>{{this.prediction}}</p>
+												            <p>{{bet.prediction}}</p>
 												        </div>
 												        <div class="bottom">
-												            <p class="betPrice"> {{this.price}} </p>
-												            <button class="interestedButton">Interested</button>
+												            <p class="betPrice"> {{bet.price}} </p>
+												            	<button class="interestedButton">Interested</button>
+									       	{{/each}} 
+
 									        			</div>
 									    			</div>
 												</div>
-											{{/each}}
 									</div>
 							</div>
 						</div>
@@ -100,3 +107,9 @@
 		</div>
 	</div>
 </div>
+</body>
+</html>
+
+
+
+
