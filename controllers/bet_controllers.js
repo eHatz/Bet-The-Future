@@ -3,6 +3,7 @@ var methodO = require('method-override');
 var bodyParse = require('body-parser');
 var bcrypt = require('bcrypt-nodejs');
 var passport = require('passport');
+	//we may not need session anymore - passport claims to handle this functionality
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
 var express = require('express');
@@ -68,8 +69,21 @@ router.post('/signUp', function(req, res) {
 
 //Using a plain callback function
 router.post("/login", 
-	passport
-	)
+	passport.authenticate("local"),
+	function(request, response){
+		//exeutes upon successful authentication
+		console.log(request.user); //print user info?
+		response.redirect(/*route*/);
+	}
+);
+
+//Using an object to handle redirects
+router.post("/login",
+	passport.authenticate("local", {
+		successRedirect: "/home",
+		failureRedirect: "/login"
+	})
+);
 
 module.exports = router;
 
