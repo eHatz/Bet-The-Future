@@ -9,7 +9,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./controllers/bet_controllers.js');
-var models = require('../models');
+var models = require('./models');
 var User = models.Users; //correct?
 
 var app = express();
@@ -83,7 +83,7 @@ app.post('/login',
 	passport.authenticate('local',{ 
 		successRedirect: '/home',
 		failureRedirect: '/login' 
-	});
+	})
 );
 
 
