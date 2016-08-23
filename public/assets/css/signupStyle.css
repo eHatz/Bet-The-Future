@@ -1,0 +1,75 @@
+html {
+	height: 100%;
+	background: url('home_background.png') no-repeat;
+	background-size: cover;
+}
+
+body{
+	background-color: transparent;
+}
+
+
+form{
+
+	z-index: 2;
+	width: 500px;
+	margin-top: 5%;
+	margin-right: 30%;
+
+}
+
+input{
+	border: 2px solid;
+    border-radius: 15px;
+    padding: 25px;
+
+}
+.form-control {
+	padding-top:  23px;
+	padding-bottom: 23px;
+	background-color: #ffcb42;
+	color: white;
+	font-size: 18px;
+	border: 2px solid #00bbba;
+	border-radius: 11px;
+	margin-left: 50%;
+
+}
+
+
+.cloudDiv1{
+	background-image: url("../images/cloud.png");
+	background-position: -30% 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: absolute;
+	transform: translateY(-30%);
+	transform: translateX(40%);
+	top:25%;
+	width: 800px;
+	height: 600px;
+}
+h1{
+	font-family: 'Fascinate Inline', cursive;
+	color: #683b00;
+	letter-spacing: -1px;
+	text-align: center;
+	margin-right: -55%;
+}
+label{
+	font-size: 15px;
+	color: #00bbba;
+	font-weight: bold;
+	margin-left: 50%;
+}
+.btn-default {
+    color: white;
+    background-color: #00babf;
+    border-color: #04a3a3;
+    margin-top: 10px;
+  
+
+
+.placeholder{
+	color: white;
+}

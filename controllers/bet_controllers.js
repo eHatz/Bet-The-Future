@@ -51,6 +51,12 @@ router.get('/home', function(req, res) {
 
 });
 
+router.get('/profile', function(req, res) {
+
+	res.render('profile'); //uses login.handlebars
+
+});
+
 router.post('/signUp', function(req, res) {
 
 	models.Users.create({
