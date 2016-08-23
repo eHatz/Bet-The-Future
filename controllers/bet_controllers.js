@@ -4,28 +4,41 @@ var bodyParse = require('body-parser');
 var router = express.Router();
 var models = require('../models');
 
-router.get('/', function (req, res) {
-	res.render('login')
-});
-router.post('/login', function(req, res) {
-	console.log(req.body)
-	models.Users.findAll({ where: {UserName: req.body.username}}).then(function(data) {
-		
-		var formPassword = req.body.password;
-		var userPassword = data[0].Password;
-		if (data.length === 0 || formPassword !== userPassword) {
-			console.log('invalid Username/Password');
-			res.redirect('/');
-		} else if (data.length > 0 && formPassword === userPassword) {
-			console.log('Welcome!');
-			res.redirect('/home');
+function getHome (username) {
+	router.get('/', function (req, res) {
+		var userObj = {
+			username: username
 		};
-		
-	}).catch(function(err) {
-		throw err;
+		res.render('login', userObj);
 	});
+};
 
-});
+
+function loginPost() {
+	var username;
+	router.post('/login', function(req, res) {
+		username = req.body.username;
+		console.log(req.body)
+		models.Users.findAll({ where: {UserName: username}}).then(function(data) {
+			
+			var formPassword = req.body.password;
+			var userPassword = data[0].Password;
+			if (data.length === 0 || formPassword !== userPassword) {
+				console.log('Invalid Username/Password');
+				res.redirect('/');
+			} else if (data.length > 0 && formPassword === userPassword) {
+				console.log('Welcome!');
+				res.redirect('/home');
+			};
+			
+		}).catch(function(err) {
+			throw err;
+		});
+	});
+	return username;
+};
+	
+
 router.get('/signup', function(req, res) {
 
 	res.render('signup'); // uses signup.handlebars
