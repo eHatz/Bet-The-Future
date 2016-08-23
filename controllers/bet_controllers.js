@@ -8,15 +8,13 @@ router.get('/', function (req, res) {
 	res.render('login')
 });
 router.post('/login', function(req, res) {
-	console.log(req.body)
+
 	models.Users.findAll({ where: {UserName: req.body.username}}).then(function(data) {
-		
 		var formPassword = req.body.password;
-		var userPassword = data[0].Password;
-		if (data.length === 0 || formPassword !== userPassword) {
+		if (data.length === 0 || formPassword !== data[0].Password) {
 			console.log('invalid Username/Password');
 			res.redirect('/');
-		} else if (data.length > 0 && formPassword === userPassword) {
+		} else if (data.length > 0 && formPassword === data[0].Password) {
 			console.log('Welcome!');
 			res.redirect('/home');
 		};
@@ -45,6 +43,7 @@ router.get('/profile', function(req, res) {
 });
 
 router.post('/signUp', function(req, res) {
+	console.log(req.body)
 
 	models.Users.create({
 		FirstName: req.body.firstName,
