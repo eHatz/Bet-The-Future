@@ -3,6 +3,7 @@ var methodO = require('method-override');
 var bodyParse = require('body-parser');
 var router = express.Router();
 var models = require('../models');
+var passport = 
 
 router.get('/', function (req, res) {
 	res.render('login')
@@ -60,18 +61,6 @@ router.post('/signUp', function(req, res) {
 	});
 
 });
-
-router.post('/devoured/:id', function(req, res){
-	models.burgers.update( 
-		{devoured: true}, 
-		{where: {id: req.body.id}}
-	).then(function() {
-		res.redirect('/')
-	})
-});
-
-
-
 
 module.exports = router;
 

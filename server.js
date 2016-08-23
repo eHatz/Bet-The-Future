@@ -5,6 +5,8 @@ var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
 var sequelize = require('sequelize');
 var bcrypt = require('bcrypt-nodejs');
+var cookieParser = require('cookie-parser');
+var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 //Passport dependencies
 var passport = require('passport');
@@ -35,6 +37,7 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 
 //Passport middleware
+app.use(cookieParser())
 app.use(express.session({ secret: 'dromedary_Stampede' }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -54,7 +57,17 @@ app.listen(port, function() {
 
 */
 
-passport.use(new LocalStrategy(
+passport.serializeUser(function(user, done) {
+  console.log("serializing " + user.username);
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  console.log("deserializing " + obj);
+  done(null, obj);
+});
+
+passport.use("loginStrategy", new LocalStrategy(
   function(loginUser, loginPassword, done) {
     User.findOne({username: loginUser}, function (err, user) {
     	if (err){
@@ -66,28 +79,19 @@ passport.use(new LocalStrategy(
      	if (!user.validPassword(loginPassword)){
         	return done(null, false, { message: 'Incorrect password.' });
       	}
-      	//Successful, login
+      	//Successful login
     	return done(null, user);
     });
   }
 ));
 
-//First option: Authentication with a plain callback function
-// app.post('/login', 
-// 	passport.authenticate('local'),
-// 	function(request, response){
-// 		// If this function gets called, authentication was successful.
-// 		console.log(response.user)
-// 		//response.redirect('/users/' + request.user.username);
-// 	}
-// );
-
-//Authentication with an object to handle redirecting
+//Passport login authentication
 app.post('/login',
-	passport.authenticate('local',{ 
+	passport.authenticate('loginStrategy',{ 
 		successRedirect: '/home',
 		failureRedirect: '/login' 
 	})
 );
+
 
 
