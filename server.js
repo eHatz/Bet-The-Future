@@ -5,8 +5,11 @@ var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
 var sequelize = require('sequelize');
 var bcrypt = require('bcrypt-nodejs');
+
+//Passport dependencies
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
 
 var routes = require('./controllers/bet_controllers.js');
 var models = require('./models');
@@ -16,10 +19,6 @@ var app = express();
 var router = express.Router();
 
 //Middleware
-app.use(express.session({ secret: 'dromedary_Stampede' }));
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({
@@ -34,6 +33,11 @@ app.set('view engine', 'handlebars');
 app.use(methodOverride('_method'));
 
 app.use(bodyParser.json());
+
+//Passport middleware
+app.use(express.session({ secret: 'dromedary_Stampede' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Startup
 app.use('/', routes);
@@ -68,7 +72,7 @@ passport.use(new LocalStrategy(
   }
 ));
 
-// //First option: Authentication with a plain callback function
+//First option: Authentication with a plain callback function
 // app.post('/login', 
 // 	passport.authenticate('local'),
 // 	function(request, response){
