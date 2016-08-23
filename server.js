@@ -6,12 +6,12 @@ var exphbs = require('express-handlebars');
 var sequelize = require('sequelize');
 var bcrypt = require('bcrypt-nodejs');
 var cookieParser = require('cookie-parser');
-var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 //Passport dependencies
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
+var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var routes = require('./controllers/bet_controllers.js');
 var models = require('./models');
@@ -38,7 +38,7 @@ app.use(bodyParser.json());
 
 //Passport middleware
 app.use(cookieParser())
-app.use(express.session({ secret: 'dromedary_Stampede' }));
+app.use(session({ secret: 'dromedary_Stampede' }));
 app.use(passport.initialize());
 app.use(passport.session());
 

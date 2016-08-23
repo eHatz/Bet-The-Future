@@ -46,7 +46,6 @@ router.get('/profile', function(req, res) {
 });
 
 router.post('/signUp', function(req, res) {
-
 	models.Users.create({
 		FirstName: req.body.firstName,
 		LastName: req.body.lastName,
