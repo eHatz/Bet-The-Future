@@ -17,6 +17,10 @@ var router = express.Router();
 
 
 //Middleware
+app.use(express.session({ secret: 'dromedary_Stampede' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({
@@ -26,11 +30,13 @@ app.use(bodyParser.urlencoded({
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
-
 app.set('view engine', 'handlebars');
-app.use(methodOverride('_method'))
+
+app.use(methodOverride('_method'));
+
 app.use(bodyParser.json());
 
+//Startup
 app.use('/', routes);
 
 var port = 3000;
@@ -41,9 +47,6 @@ app.listen(port, function() {
 /////////// PASSPORT \\\\\\\\\\\\
 
 /*Notes
-we need:
-	-passport.initialize() middleware 
-	-passport.session() middleware
 
 */
 

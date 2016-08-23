@@ -1,9 +1,8 @@
-//Dependencies
+var express = require('express');
 var methodO = require('method-override');
 var bodyParse = require('body-parser');
-
-
-
+var router = express.Router();
+var models = require('../models');
 
 router.get('/', function (req, res) {
 	res.render('login')
@@ -62,42 +61,21 @@ router.post('/signUp', function(req, res) {
 
 });
 
-//Using a plain callback function
-router.post("/login", 
-	passport.authenticate("local"),
-	function(request, response){
-		//exeutes upon successful authentication
-		console.log(request.user); //print user info?
-		response.redirect(/*route*/);
-	}
-);
-
-//Using an object to handle redirects
-router.post("/login",
-	passport.authenticate("local", {
-		successRedirect: "/home",
-		failureRedirect: "/login"
+router.post('/devoured/:id', function(req, res){
+	models.burgers.update( 
+		{devoured: true}, 
+		{where: {id: req.body.id}}
+	).then(function() {
+		res.redirect('/')
 	})
-);
+});
+
+
 
 
 module.exports = router;
 
 
-
-
-
-
-
-
-// router.post('/devoured/:id', function(req, res){
-// 	models.burgers.update( 
-// 		{devoured: true}, 
-// 		{where: {id: req.body.id}}
-// 	).then(function() {
-// 		res.redirect('/')
-// 	})
-// });
 
 // app.get('/', function(req, res) {
 //     // SeqBurger.findAll({}).then(function(sq_data) {
