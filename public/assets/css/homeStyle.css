@@ -33,7 +33,7 @@ input{
 	padding-top:  23px;
 	padding-bottom: 23px;
 	background-color: #ffcb42;
-	color: white;
+	color: #613702;
 	font-size: 18px;
 	border: 2px solid #00bbba;
 	border-radius: 11px;
@@ -68,7 +68,7 @@ label{
 }
 
 .placeholder{
-	color: white;
+	color: #613702;
 }
 
 #cloud2{
@@ -89,7 +89,14 @@ label{
 }
 li{
 	color: #ffcb42;
-
+}
+#betDiv {
+    width: 500px;
+    height: 300px;
+    overflow: scroll;
+    border: 2px solid #00bbba;
+	border-radius: 5px;
+	margin-left: -140px;
 }
 
 

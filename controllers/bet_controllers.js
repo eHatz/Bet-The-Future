@@ -5,19 +5,19 @@ var router = express.Router();
 var models = require('../models');
 var passport = 
 
+
+
 router.get('/', function (req, res) {
 	res.render('login')
 });
 router.post('/login', function(req, res) {
-	console.log(req.body)
+
 	models.Users.findAll({ where: {UserName: req.body.username}}).then(function(data) {
-		
 		var formPassword = req.body.password;
-		var userPassword = data[0].Password;
-		if (data.length === 0 || formPassword !== userPassword) {
+		if (data.length === 0 || formPassword !== data[0].Password) {
 			console.log('invalid Username/Password');
 			res.redirect('/');
-		} else if (data.length > 0 && formPassword === userPassword) {
+		} else if (data.length > 0 && formPassword === data[0].Password) {
 			console.log('Welcome!');
 			res.redirect('/home');
 		};
@@ -34,9 +34,15 @@ router.get('/signup', function(req, res) {
 });
 
 router.get('/home', function(req, res) {
-
-	res.render('home'); //uses login.handlebars
-
+	models.betTable.findAll({}).then(function(single_bet) {
+		res.render('home', {
+			bet: single_bet
+		})
+	}).catch(function(err){
+		if(err){
+			throw err;
+		}
+	})
 });
 
 router.get('/profile', function(req, res) {
@@ -46,6 +52,7 @@ router.get('/profile', function(req, res) {
 });
 
 router.post('/signUp', function(req, res) {
+
 	models.Users.create({
 		FirstName: req.body.firstName,
 		LastName: req.body.lastName,
@@ -60,6 +67,21 @@ router.post('/signUp', function(req, res) {
 	});
 
 });
+
+
+router.post('/home', function(req, res){
+	console.log(req.body);
+	models.betTable.create({
+		prediction: req.body.prediction,
+		price:req.body.price
+	}).then(function(bet_response){
+		console.log(bet_response);
+		res.redirect('home')
+	}).catch(function(err){
+		throw err;
+	})
+});	
+
 
 module.exports = router;
 
