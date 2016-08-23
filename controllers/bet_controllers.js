@@ -1,6 +1,11 @@
-var express = require('express');
+//Dependencies
 var methodO = require('method-override');
 var bodyParse = require('body-parser');
+var bcrypt = require('bcrypt-nodejs');
+var passport = require('passport');
+var session = require('express-session');
+var LocalStrategy = require('passport-local').Strategy;
+var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
@@ -61,7 +66,19 @@ router.post('/signUp', function(req, res) {
 
 });
 
+//Using a plain callback function
+router.post("/login", 
+	passport
+	)
+
 module.exports = router;
+
+
+
+
+
+
+
 
 // router.post('/devoured/:id', function(req, res){
 // 	models.burgers.update( 
