@@ -8,25 +8,25 @@ var passport =
 
 
 router.get('/', function (req, res) {
-	res.render('login')
+	res.render('login');
 });
-router.post('/login', function(req, res) {
 
-	models.Users.findAll({ where: {UserName: req.body.username}}).then(function(data) {
-		var formPassword = req.body.password;
-		if (data.length === 0 || formPassword !== data[0].Password) {
-			console.log('invalid Username/Password');
-			res.redirect('/');
-		} else if (data.length > 0 && formPassword === data[0].Password) {
-			console.log('Welcome!');
-			res.redirect('/home');
-		};
-		
-	}).catch(function(err) {
-		throw err;
-	});
+// router.post('/login', function(req, res) {
+// 	models.Users.findAll({ where: {UserName: req.body.username}}).then(function(data) {
+// 		var formPassword = req.body.password;
+// 		if (data.length === 0 || formPassword !== data[0].Password) {
+// 			console.log('invalid Username/Password');
+// 			res.redirect('/');
+// 		} else if (data.length > 0 && formPassword === data[0].Password) {
+// 			console.log('Welcome!');
+// 			res.redirect('/home');
+// 		};
+// 	}).catch(function(err) {
+// 		throw err;
+// 	});
 
-});
+// });
+
 router.get('/signup', function(req, res) {
 
 	res.render('signup'); // uses signup.handlebars
@@ -34,6 +34,7 @@ router.get('/signup', function(req, res) {
 });
 
 router.get('/home', function(req, res) {
+	console.log(req.user, "this is home route")
 	models.betTable.findAll({}).then(function(single_bet) {
 		res.render('home', {
 			bet: single_bet

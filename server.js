@@ -69,15 +69,16 @@ passport.deserializeUser(function(obj, done) {
 
 passport.use("loginStrategy", new LocalStrategy(
   function(loginUser, loginPassword, done) {
-    User.findOne({username: loginUser}, function (err, user) {
-    	if (err){
-    		return done(err); 
-    	}
+ 	console.log("loginUser: " + loginUser);
+ 	console.log("loginPassword: " + loginPassword);
+
+    User.findOne({where: {UserName: loginUser}}).then(function(user){
+    	console.log("findOne user: ", user)
     	if (!user){
         	return done(null, false, {message: 'Incorrect username.'});
       	}
-     	if (!user.validPassword(loginPassword)){
-        	return done(null, false, { message: 'Incorrect password.' });
+     	if (!user.Password === loginPassword){
+        	return done(null, false, {message: 'Incorrect password.' });
       	}
       	//Successful login
     	return done(null, user);
@@ -85,11 +86,11 @@ passport.use("loginStrategy", new LocalStrategy(
   }
 ));
 
-//Passport login authentication
+//Passport login 
 app.post('/login',
 	passport.authenticate('loginStrategy',{ 
 		successRedirect: '/home',
-		failureRedirect: '/login' 
+		failureRedirect: '/' 
 	})
 );
 
