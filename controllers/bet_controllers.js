@@ -6,6 +6,7 @@ var models = require('../models');
 
 
 
+
 router.get('/', function (req, res) {
 	res.render('login')
 });
@@ -33,7 +34,7 @@ router.get('/signup', function(req, res) {
 });
 
 router.get('/home', function(req, res) {
-	models.betTable.findAll({}).then(function(single_bet) {
+	models.Bet.findAll({}).then(function(single_bet) {
 		res.render('home', {
 			bet: single_bet
 		})
@@ -69,12 +70,19 @@ router.post('/signUp', function(req, res) {
 });
 
 router.post('/home', function(req, res){
-	console.log(req.body);
-	models.betTable.create({
+	console.log("request body",req.body);
+	console.log("*******************")
+	models.Bet.create({
+		user:req.body.user,
 		prediction: req.body.prediction,
-		price:req.body.price
+		referee: req.body.referee,
+		price:req.body.price,
+		judgmentDay: req.body.judgementDay
+
 	}).then(function(bet_response){
-		console.log(bet_response);
+		console.log("bet_response",bet_response	);
+			console.log("*******************")
+
 		res.redirect('home')
 	}).catch(function(err){
 		throw err;
