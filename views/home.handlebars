@@ -30,10 +30,10 @@
 							</div>
 							<div class="form-group">
 								<div class="col-md-10">
-									<label for="cash">Cash, Homie:</label>
+									<label for="price">Cash, Homie:</label>
 									<input type="text" name="price" class="form-control" id="inputCash">
 									<label for="judgementDay">Judgement Day:</label>
-									<input type="judgementDay" class="form-control" id="inputJudgementDay">
+									<input name="judgementDay" type="date" class="form-control" id="inputJudgementDay">
 								</div>
 							</div>
 						
@@ -70,26 +70,7 @@
 									{{! {{bets}}
 										{{#each bet}}
 											{{> bet_info this}}
-												<div class="betBox">
-												    <div class="usrPic">
-												    </div>
-												    
-												    <div class="usrInfo">
-												       <!--  <p class="usrName">{{bet.user.name}}</p> -->
-												        <p></p>
-												        <p></p>
-												        <p></p>
-												    </div>
-												    <div class="betInfo">
-												        <div class="prediction">
-												            <p>{{this.prediction}}</p>
-												        </div>
-												        <div class="bottom">
-												            <p class="betPrice"> {{this.price}} </p>
-												            <button class="interestedButton">Interested</button>
-									        			</div>
-									    			</div>
-												</div>
+												
 											{{/each}}
 									</div>
 							</div>
