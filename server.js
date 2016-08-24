@@ -52,11 +52,6 @@ app.listen(port, function() {
 
 /////////// PASSPORT \\\\\\\\\\\\
 
-/*Notes
-
-
-*/
-
 passport.serializeUser(function(user, done) {
   console.log("serializing " + user.username);
   done(null, user);
@@ -67,7 +62,7 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-passport.use("loginStrategy", new LocalStrategy(
+module.exports = passport.use("loginStrategy", new LocalStrategy(
   function(loginUser, loginPassword, done) {
  	console.log("loginUser: " + loginUser);
  	console.log("loginPassword: " + loginPassword);
@@ -85,14 +80,5 @@ passport.use("loginStrategy", new LocalStrategy(
     });
   }
 ));
-
-//Passport login 
-app.post('/login',
-	passport.authenticate('loginStrategy',{ 
-		successRedirect: '/home',
-		failureRedirect: '/' 
-	})
-);
-
 
 
