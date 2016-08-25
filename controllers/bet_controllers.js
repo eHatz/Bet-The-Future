@@ -3,11 +3,17 @@ var express = require('express');
 var methodO = require('method-override');
 var bodyParse = require('body-parser');
 var router = express.Router();
+var app = express();
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
+var SequelizeStore = require('connect-session-sequelize')(session.Store);
 var server = require("../server.js");
 var models = require('../models');
 
+//Passport middleware
+app.use(passport.session());
+app.use(passport.initialize());
 
 
 //==================LOGIN GET============================
@@ -34,10 +40,13 @@ router.get('/signup', function(req, res) {
 // 	})
 // });
 
-
 router.get('/home', function(req, res) {
+	console.log("req: ", req);
+	console.log("session: ", session);
 	if (req.isAuthenticated()){
-		console.log ("server: ", server);
+		// console.log ("server: ", server);
+		console.log("reqGood: ", req);
+		console.log("sessionGood: ", session);
 		models.Bet.findAll({}).then(function(single_bet) {
 			res.render('home', {
 				bet: single_bet
@@ -49,8 +58,10 @@ router.get('/home', function(req, res) {
 		})
 	}
 	else{
+		console.log("else");
 		req.session.error = 'Please sign in!';
-		console.log(req.session.error);
+		console.log("reqBad: ", req);
+		console.log("sessionBad: ", session);
 		res.redirect('/');
 	}
 });
