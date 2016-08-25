@@ -105,12 +105,14 @@ router.post('/login',
 	})
 );
 
+
 //Logout
 router.get('/logout', function(req, res){
 	console.log("logged out!");
 	req.logout();
 	res.redirect('/');
 });
+
 
 module.exports = router;
 
