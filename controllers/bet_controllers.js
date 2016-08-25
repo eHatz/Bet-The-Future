@@ -25,8 +25,7 @@ router.get('/signup', function(req, res) {
 
 router.get('/home', function(req, res) {
 	if (req.isAuthenticated()){
-		console.log("reqGood: ", req);
-		console.log("sessionGood: ", session);
+		console.log("findMe: ", req.user.id);
 		models.Bet.findAll({}).then(function(single_bet) {
 			res.render('home', {
 				bet: single_bet
