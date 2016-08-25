@@ -21,17 +21,37 @@ router.get('/signup', function(req, res) {
 
 //====================HOME GET=============================
 
+// router.get('/home', function(req, res) {
+// 	models.Bet.findAll({}).then(function(single_bet) {
+// 		res.render('home', {
+// 			bet: single_bet
+// 		})
+// 	}).catch(function(err){
+// 		if(err){
+// 			throw err;
+// 		}
+// 	})
+// });
+
+
 router.get('/home', function(req, res) {
-	console.log(req.user, "this is home route")
-	models.Bet.findAll({}).then(function(single_bet) {
-		res.render('home', {
-			bet: single_bet
+	if (req.isAuthenticated()){
+		console.log ("server: ", server);
+		models.Bet.findAll({}).then(function(single_bet) {
+			res.render('home', {
+				bet: single_bet
+			})
+		}).catch(function(err){
+			if(err){
+				throw err;
+			}
 		})
-	}).catch(function(err){
-		if(err){
-			throw err;
-		}
-	})
+	}
+	else{
+		req.session.error = 'Please sign in!';
+		console.log(req.session.error);
+		res.redirect('/');
+	}
 });
 
 //====================PROFILE GET==========================
@@ -85,13 +105,22 @@ router.post('/home', function(req, res){
 	})
 });	
 
-//Passport login 
+//=====================PASSPORT========================
+
+//Login 
 router.post('/login',
 	passport.authenticate('loginStrategy',{ 
 		successRedirect: '/home',
 		failureRedirect: '/' 
 	})
 );
+
+//Logout
+router.get('/logout', function(req, res){
+	console.log("logged out!");
+	req.logout();
+	res.redirect('/');
+});
 
 module.exports = router;
 
