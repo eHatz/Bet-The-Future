@@ -7,6 +7,23 @@ var routes = require('./controllers/bet_controllers.js');
 
 var app = express();
 
+
+var defImg = "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200";
+function makeUserPics(){
+		var DImages = []
+		for (var i = 0; i < 10; i++) {
+
+			var newPic ={
+				ImageLink: defImg
+			}
+			DImages.push(newPic);
+	}
+	return DImages;
+}
+
+
+
+
 //Check new user info
 module.exports = {
 	//We should be able to use the sequelize-isunique-validator npm package instead of this method; keeping this method for now, JIC
