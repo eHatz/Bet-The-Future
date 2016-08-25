@@ -93,6 +93,12 @@ router.post('/login',
 	})
 );
 
+//Passport logout
+router.get('/logout', function(req, res){
+	req.logout();
+	res.redirect('/');
+});
+
 module.exports = router;
 
 

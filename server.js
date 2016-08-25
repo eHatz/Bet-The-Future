@@ -15,7 +15,7 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var routes = require('./controllers/bet_controllers.js');
 var models = require('./models');
-var User = models.Users; //correct?
+var User = models.Users; 
 
 var app = express();
 var router = express.Router();
@@ -52,6 +52,7 @@ app.listen(port, function() {
 });
 
 /////////// PASSPORT \\\\\\\\\\\\
+var exports = module.exports = {};
 
 passport.serializeUser(function(user, done) {
   console.log("serializing " + user.username);
@@ -63,10 +64,11 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-module.exports = passport.use("loginStrategy", new LocalStrategy(
+//Login strategy 
+exports.strategy = passport.use("loginStrategy", new LocalStrategy(
   function(loginUser, loginPassword, done) {
- 	console.log("loginUser: " + loginUser);
- 	console.log("loginPassword: " + loginPassword);
+ 	  console.log("loginUser: " + loginUser);
+ 	  console.log("loginPassword: " + loginPassword);
 
     User.findOne({where: {UserName: loginUser}}).then(function(user){
     	console.log("findOne user: ", user)
@@ -82,4 +84,10 @@ module.exports = passport.use("loginStrategy", new LocalStrategy(
   }
 ));
 
+//This should bounce a user if they aren't logged in. 
+exports.ensureAuthenticated = function(req, res, next) {
+  if (req.isAuthenticated()) {return next(); }
+  req.session.error = 'Please sign in!';
+  res.redirect('/');
+}
 
