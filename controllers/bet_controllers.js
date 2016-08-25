@@ -123,5 +123,3 @@ router.get('/logout', function(req, res){
 
 module.exports = router;
 
-
->>>>>>> bb58f57fd28c0f691d82ae10c34e0bf575e107b6
