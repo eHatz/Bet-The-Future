@@ -52,22 +52,17 @@ app.listen(port, function() {
 /////////// PASSPORT \\\\\\\\\\\\
 
 passport.serializeUser(function(user, done) {
-  console.log("serializing " + user.username);
   done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
-  console.log("deserializing " + obj);
   done(null, obj);
 });
 
 module.exports = passport.use("loginStrategy", new LocalStrategy(
   function(loginUser, loginPassword, done) {
- 	console.log("loginUser: " + loginUser);
- 	console.log("loginPassword: " + loginPassword);
-
     User.findOne({where: {UserName: loginUser}}).then(function(user){
-    	console.log("findOne user: ", user)
+    	console.log("userID console: ", user.id)
     	if (!user){
         	return done(null, false, {message: 'Incorrect username.'});
       	}
