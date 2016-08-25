@@ -11,10 +11,6 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 var server = require("../server.js");
 var models = require('../models');
 
-//Passport middleware
-app.use(passport.session());
-app.use(passport.initialize());
-
 //==================LOGIN GET============================
 router.get('/', function (req, res) {
 	res.render('login');
