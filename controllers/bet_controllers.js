@@ -36,8 +36,7 @@ router.get('/home', function(req, res) {
 				throw err;
 			}
 		})
-	}
-	else{
+	}else{
 		console.log("else");
 		req.session.error = 'Please sign in!';
 		res.redirect('/');
@@ -46,16 +45,26 @@ router.get('/home', function(req, res) {
 
 //====================PROFILE GET==========================
 router.get('/profile', function(req, res) {
-	res.render('profile'); //uses login.handlebars
+	if (req.isAuthenticated()){
+		res.render('profile'); //uses login.handlebars
+	}else{
+		console.log("else");
+		req.session.error = 'Please sign in!';
+		res.redirect('/');
+	}
 });
 
 //====================FRIEND GET========================
 
 router.get('/friends', function(req, res){
-
-	res.render('friends');
+	if (req.isAuthenticated()){
+		res.render('friends');
+	}else{
+		console.log("else");
+		req.session.error = 'Please sign in!';
+		res.redirect('/');
+	}
 });
-
 
 //=====================SIGNUP POST=========================
 router.post('/signUp', function(req, res) {
@@ -105,14 +114,12 @@ router.post('/login',
 	})
 );
 
-
 //Logout
 router.get('/logout', function(req, res){
 	console.log("logged out!");
 	req.logout();
 	res.redirect('/');
 });
-
 
 module.exports = router;
 
