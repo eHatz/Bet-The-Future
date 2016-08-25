@@ -1,6 +1,6 @@
 //Dependencies
 var express = require('express');
-var bodyParser = require('body-parser');
+var bodyParse = require('body-parser');
 var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
 var sequelize = require('sequelize');
@@ -23,7 +23,7 @@ var router = express.Router();
 //Middleware
 app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.urlencoded({
+app.use(bodyParse.urlencoded({
     extended: false
 }));
 
@@ -34,7 +34,7 @@ app.set('view engine', 'handlebars');
 
 app.use(methodOverride('_method'));
 
-app.use(bodyParser.json());
+app.use(bodyParse.json());
 
 //Passport middleware
 app.use(cookieParser())
@@ -50,43 +50,39 @@ app.listen(port, function() {
     console.log("app is listening");
 });
 
-/////////// PASSPORT \\\\\\\\\\\\
-var exports = module.exports = {};
 
-passport.serializeUser(function(user, done) {
-  console.log("serializing " + user.username);
-  done(null, user);
-});
+// module.exports = {
+//   //Login strategy 
+//   strategy: passport.use("loginStrategy", new LocalStrategy(
+//     function(loginUser, loginPassword, done) {
+//       console.log("loginUser: " + loginUser);
+//       console.log("loginPassword: " + loginPassword);
 
-passport.deserializeUser(function(obj, done) {
-  console.log("deserializing " + obj);
-  done(null, obj);
-});
+//       User.findOne({where: {UserName: loginUser}}).then(function(user){
+//         console.log("findOne user: ", user)
+//         if (!user){
+//             return done(null, false, {message: 'Incorrect username.'});
+//           }
+//         if (!user.Password === loginPassword){
+//             return done(null, false, {message: 'Incorrect password.' });
+//           }
+//           //Successful login
+//         return done(null, user);
+//       });
+//     }
+//   )),
 
-//Login strategy 
-exports.strategy = passport.use("loginStrategy", new LocalStrategy(
-  function(loginUser, loginPassword, done) {
- 	  console.log("loginUser: " + loginUser);
- 	  console.log("loginPassword: " + loginPassword);
+//   //This should bounce a user if they aren't logged in. 
+//   ensureAuthenticated: function(req, res, next) {
+//     if (req.isAuthenticated()) {return next(); }
+//     req.session.error = 'Please sign in!';
+//     res.redirect('/');
+//   }
 
-    User.findOne({where: {UserName: loginUser}}).then(function(user){
-    	console.log("findOne user: ", user)
-    	if (!user){
-        	return done(null, false, {message: 'Incorrect username.'});
-      	}
-     	if (!user.Password === loginPassword){
-        	return done(null, false, {message: 'Incorrect password.' });
-      	}
-      	//Successful login
-    	return done(null, user);
-    });
-  }
-));
+// };
 
-//This should bounce a user if they aren't logged in. 
-exports.ensureAuthenticated = function(req, res, next) {
-  if (req.isAuthenticated()) {return next(); }
-  req.session.error = 'Please sign in!';
-  res.redirect('/');
-}
+
+
+
+
 

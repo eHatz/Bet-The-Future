@@ -4,10 +4,25 @@ var methodO = require('method-override');
 var bodyParse = require('body-parser');
 var router = express.Router();
 var passport = require("passport");
-var server = require("../server.js");
 var models = require('../models');
 
+//Passport dependencies
+var cookieParser = require('cookie-parser');
+var app = express();
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
+var SequelizeStore = require('connect-session-sequelize')(session.Store);
+var models = require('../models');
+var User = models.Users; 
 
+//Passport middleware
+app.use(cookieParser())
+app.use(session({ secret: 'dromedary_Stampede' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Routes
 router.get('/', function (req, res) {
 	res.render('login');
 });
@@ -17,16 +32,22 @@ router.get('/signup', function(req, res) {
 });
 
 router.get('/home', function(req, res) {
-	console.log(req.user, "this is home route")
-	models.Bet.findAll({}).then(function(single_bet) {
-		res.render('home', {
-			bet: single_bet
+	if (req.isAuthenticated()){
+		models.Bet.findAll({}).then(function(single_bet) {
+			res.render('home', {
+				bet: single_bet
+			})
+		}).catch(function(err){
+			if(err){
+				throw err;
+			}
 		})
-	}).catch(function(err){
-		if(err){
-			throw err;
-		}
-	})
+	}
+	else{
+		req.session.error = 'Please sign in!';
+		console.log(req.session.error);
+		res.redirect('/');
+	}
 });
 
 router.get('/profile', function(req, res) {
@@ -80,9 +101,47 @@ router.post('/login',
 
 //Passport logout
 router.get('/logout', function(req, res){
+	console.log("logged out!");
 	req.logout();
 	res.redirect('/');
 });
+
+/////////// PASSPORT LOGIC\\\\\\\\\\\\
+
+passport.serializeUser(function(user, done) {
+  console.log("serializing " + user.username);
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  console.log("deserializing " + obj);
+  done(null, obj);
+});
+
+passport.use("loginStrategy", new LocalStrategy(
+  function(loginUser, loginPassword, done) {
+    console.log("loginUser: " + loginUser);
+    console.log("loginPassword: " + loginPassword);
+
+    User.findOne({where: {UserName: loginUser}}).then(function(user){
+      console.log("findOne user: ", user)
+      if (!user){
+          return done(null, false, {message: 'Incorrect username.'});
+        }
+      if (!user.Password === loginPassword){
+          return done(null, false, {message: 'Incorrect password.' });
+        }
+        //Successful login
+      return done(null, user);
+    });
+  }
+));
+
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {return next(); }
+	req.session.error = 'Please sign in!';
+	res.redirect('/');
+}
 
 module.exports = router;
 
