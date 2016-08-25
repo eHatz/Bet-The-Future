@@ -33,7 +33,49 @@ router.get('/home', function(req, res) {
 		}
 	})
 });
+//====================SEARCH GET===========================
+router.get('/search-users', function(req, res) {
+	var friends = []
+	res.render('friends', friends);
+})
+router.post('/search-users', function (req, res) {
+	res.redirect('/search-users/' + req.body.userName)
+});
+router.get('/search-users/:userName', function (req, res) {
 
+	models.Users.findAll({ where: {UserName: req.params.userName}}).then(function(results) {
+		var searchResult = {
+			UserName: []
+		};
+		for (var i = 0; i < results.length; i++) {
+			var users = {
+				FirstName: results[i].FirstName,
+				LastName: results[i].LastName,
+				UserName: results[i].UserName,
+				ImageLink: results[i].ImageLink,
+				id: results[i].id
+			};
+			searchResult.UserName.push(users)
+		};
+		res.render('friends', searchResult)
+	}).catch(function(err){
+		if(err){
+			throw err;
+		}
+	})
+
+});
+
+router.post('/add-friend/:id', function(req,res) {
+	models.Friends.create({
+		User1: '1', //placeholder for now, need to get logged in user's id
+		User2: req.params.id
+	}).then(function() {
+		res.redirect('/search-users');
+	}).catch(function(err) {
+		throw err;
+	});
+})
 //====================PROFILE GET==========================
 router.get('/profile', function(req, res) {
 	res.render('profile'); //uses login.handlebars
