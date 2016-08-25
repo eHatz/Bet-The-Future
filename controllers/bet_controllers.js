@@ -15,7 +15,6 @@ var models = require('../models');
 app.use(passport.session());
 app.use(passport.initialize());
 
-
 //==================LOGIN GET============================
 router.get('/', function (req, res) {
 	res.render('login');
@@ -28,23 +27,8 @@ router.get('/signup', function(req, res) {
 
 //====================HOME GET=============================
 
-// router.get('/home', function(req, res) {
-// 	models.Bet.findAll({}).then(function(single_bet) {
-// 		res.render('home', {
-// 			bet: single_bet
-// 		})
-// 	}).catch(function(err){
-// 		if(err){
-// 			throw err;
-// 		}
-// 	})
-// });
-
 router.get('/home', function(req, res) {
-	console.log("req: ", req);
-	console.log("session: ", session);
 	if (req.isAuthenticated()){
-		// console.log ("server: ", server);
 		console.log("reqGood: ", req);
 		console.log("sessionGood: ", session);
 		models.Bet.findAll({}).then(function(single_bet) {
@@ -60,8 +44,6 @@ router.get('/home', function(req, res) {
 	else{
 		console.log("else");
 		req.session.error = 'Please sign in!';
-		console.log("reqBad: ", req);
-		console.log("sessionBad: ", session);
 		res.redirect('/');
 	}
 });
