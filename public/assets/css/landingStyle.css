@@ -17,14 +17,14 @@ input{
 }
 button{
 	padding:8px;
-	margin-top: 5px;
+	margin-bottom: 2px;
 	background-color: darkorange;
 	color: yellow;
-	font-family: 'Lato', sans-serif;
+	font-family: 'Lato', sans-serif;marg
 }
 h1{
 	font-family: 'Fascinate Inline', cursive;
-	color: #ffee54;
+	color: #ff7900;
 }
 img{
 	
@@ -41,8 +41,12 @@ img{
 }
 .btn-default {
     color: white;
-    background-color: #00babf;
+    background-color: #ff7900;
     border-color: #04a3a3;
+}
+a{
+	color: white;
+}
 
 
 

@@ -17,11 +17,15 @@
   },
   "homepage": "https://github.com/eHatz/group2-Bet#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.14.0",
     "method-override": "^2.3.6",
     "mysql": "^2.11.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "sequelize": "^3.24.1",
     "sequelize-isunique-validator": "^1.1.1"
   }
