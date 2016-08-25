@@ -3,17 +3,19 @@ var express = require('express');
 var methodO = require('method-override');
 var bodyParse = require('body-parser');
 var router = express.Router();
+
+var app = express();
 var passport = require("passport");
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
+var SequelizeStore = require('connect-session-sequelize')(session.Store);
 var server = require("../server.js");
 var models = require('../models');
-
-
 
 //==================LOGIN GET============================
 router.get('/', function (req, res) {
 	res.render('login');
 });
-
 //==================SIGNUP GET=============================
 router.get('/signup', function(req, res) {
 	res.render('signup'); // uses signup.handlebars
@@ -22,16 +24,23 @@ router.get('/signup', function(req, res) {
 //====================HOME GET=============================
 
 router.get('/home', function(req, res) {
-	console.log(req.user, "this is home route")
-	models.Bet.findAll({}).then(function(single_bet) {
-		res.render('home', {
-			bet: single_bet
+	if (req.isAuthenticated()){
+		console.log("reqGood: ", req);
+		console.log("sessionGood: ", session);
+		models.Bet.findAll({}).then(function(single_bet) {
+			res.render('home', {
+				bet: single_bet
+			})
+		}).catch(function(err){
+			if(err){
+				throw err;
+			}
 		})
-	}).catch(function(err){
-		if(err){
-			throw err;
-		}
-	})
+	}else{
+		console.log("else");
+		req.session.error = 'Please sign in!';
+		res.redirect('/');
+	}
 });
 //====================SEARCH GET===========================
 router.get('/search-users', function(req, res) {
@@ -78,16 +87,26 @@ router.post('/add-friend/:id', function(req,res) {
 })
 //====================PROFILE GET==========================
 router.get('/profile', function(req, res) {
-	res.render('profile'); //uses login.handlebars
+	if (req.isAuthenticated()){
+		res.render('profile'); //uses login.handlebars
+	}else{
+		console.log("else");
+		req.session.error = 'Please sign in!';
+		res.redirect('/');
+	}
 });
 
 //====================FRIEND GET========================
 
 router.get('/friends', function(req, res){
-
-	res.render('friends');
+	if (req.isAuthenticated()){
+		res.render('friends');
+	}else{
+		console.log("else");
+		req.session.error = 'Please sign in!';
+		res.redirect('/');
+	}
 });
-
 
 //=====================SIGNUP POST=========================
 router.post('/signUp', function(req, res) {
@@ -127,7 +146,9 @@ router.post('/home', function(req, res){
 	})
 });	
 
-//Passport login 
+//=====================PASSPORT========================
+
+//Login 
 router.post('/login',
 	passport.authenticate('loginStrategy',{ 
 		successRedirect: '/home',
@@ -135,6 +156,12 @@ router.post('/login',
 	})
 );
 
-module.exports = router;
+//Logout
+router.get('/logout', function(req, res){
+	console.log("logged out!");
+	req.logout();
+	res.redirect('/');
+});
 
+module.exports = router;
 
