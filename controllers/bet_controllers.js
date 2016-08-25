@@ -4,6 +4,7 @@ var methodO = require('method-override');
 var bodyParse = require('body-parser');
 var router = express.Router();
 var passport = require("passport");
+var LocalStrategy = require('passport-local').Strategy;
 var server = require("../server.js");
 var models = require('../models');
 
