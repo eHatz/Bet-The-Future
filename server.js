@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 
 //Passport middleware
 app.use(cookieParser())
-// app.use(session({ secret: 'dromedary_Stampede' }));
+app.use(session({ secret: 'dromedary_Stampede' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
