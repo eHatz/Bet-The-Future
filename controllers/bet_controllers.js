@@ -3,6 +3,7 @@ var express = require('express');
 var methodO = require('method-override');
 var bodyParse = require('body-parser');
 var router = express.Router();
+
 var app = express();
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
@@ -15,7 +16,6 @@ var models = require('../models');
 router.get('/', function (req, res) {
 	res.render('login');
 });
-
 //==================SIGNUP GET=============================
 router.get('/signup', function(req, res) {
 	res.render('signup'); // uses signup.handlebars
@@ -124,3 +124,4 @@ router.get('/logout', function(req, res){
 module.exports = router;
 
 
+>>>>>>> bb58f57fd28c0f691d82ae10c34e0bf575e107b6
