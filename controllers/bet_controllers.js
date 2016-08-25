@@ -8,13 +8,18 @@ var server = require("../server.js");
 var models = require('../models');
 
 
+
+//==================LOGIN GET============================
 router.get('/', function (req, res) {
 	res.render('login');
 });
 
+//==================SIGNUP GET=============================
 router.get('/signup', function(req, res) {
 	res.render('signup'); // uses signup.handlebars
 });
+
+//====================HOME GET=============================
 
 router.get('/home', function(req, res) {
 	console.log(req.user, "this is home route")
@@ -29,10 +34,20 @@ router.get('/home', function(req, res) {
 	})
 });
 
+//====================PROFILE GET==========================
 router.get('/profile', function(req, res) {
 	res.render('profile'); //uses login.handlebars
 });
 
+//====================FRIEND GET========================
+
+router.get('/friends', function(req, res){
+
+	res.render('friends');
+});
+
+
+//=====================SIGNUP POST=========================
 router.post('/signUp', function(req, res) {
 
 	models.Users.create({
@@ -49,7 +64,7 @@ router.post('/signUp', function(req, res) {
 	});
 });
 
-
+//=====================HOME POST========================
 router.post('/home', function(req, res){
 	console.log("request body",req.body);
 	console.log("*******************")
