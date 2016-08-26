@@ -28,9 +28,12 @@ router.get('/home', function(req, res) {
 		console.log("reqGood: ", req);
 		console.log("sessionGood: ", session);
 		models.Bet.findAll({}).then(function(single_bet) {
-			res.render('home', {
-				bet: single_bet
-			})
+			// req.user.getFriends().then(function(friends){
+				res.render('home', {
+					bet: single_bet,
+					// friends: friends
+				})	
+			// })
 		}).catch(function(err){
 			if(err){
 				throw err;
