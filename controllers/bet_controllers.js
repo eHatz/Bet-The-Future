@@ -25,24 +25,30 @@ router.get('/signup', function(req, res) {
 //====================HOME GET=============================
 
 router.get('/home', function(req, res) {
-	if (req.isAuthenticated()){
-		models.Bet.findAll({}).then(function(single_bet) {
-			// req.user.getFriends().then(function(friends){
-				res.render('home', {
-					bet: single_bet,
-					// friends: friends
-				})	
-			// })
-		}).catch(function(err){
-			if(err){
-				throw err;
-			}
-		})
-	}else{
-		console.log("else");
+	if (!req.isAuthenticated()) {
 		req.session.error = 'Please sign in!';
 		res.redirect('/');
-	}
+		return false;
+	};
+	models.Bet.findAll({}).then(function(single_bet) {
+		models.User.findOne({ where: {id: req.user.id}}).then(function(user) {
+			user.getFriends().then(function(allFriends) {
+				console.log('THIS IS MY FRIENDS ID', allFriends[0].id)
+				res.render('home', {
+				bet: single_bet,
+				friends: allFriends
+			})
+			})
+		})
+
+		// req.user.getFriends().then(function(friends){
+
+		// })
+	}).catch(function(err){
+		if(err){
+			throw err;
+		}
+	})
 });
 //====================SEARCH GET===========================
 router.get('/search-users', function(req, res) {
@@ -79,9 +85,9 @@ router.get('/search-users/:userName', function (req, res) {
 });
 
 router.post('/add-friend/:id', function(req,res) {
-	models.User.findOne({where: {id: req.params.id} }).then(function(user) {
+	models.User.findOne({where: {id: req.user.id} }).then(function(user) {
 		
-		models.User.findOne({where: {id: req.user.id} }).then(function(friend) {
+		models.User.findOne({where: {id: req.params.id} }).then(function(friend) {
 			return user.addFriend(friend);
 		})
 	}).then(function() {
