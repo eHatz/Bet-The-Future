@@ -27,9 +27,12 @@ router.get('/signup', function(req, res) {
 router.get('/home', function(req, res) {
 	if (req.isAuthenticated()){
 		models.Bet.findAll({}).then(function(single_bet) {
-			res.render('home', {
-				bet: single_bet
-			})
+			// req.user.getFriends().then(function(friends){
+				res.render('home', {
+					bet: single_bet,
+					// friends: friends
+				})	
+			// })
 		}).catch(function(err){
 			if(err){
 				throw err;
@@ -76,7 +79,7 @@ router.get('/search-users/:userName', function (req, res) {
 });
 
 router.post('/add-friend/:id', function(req,res) {
-	models.User.findOne({where: {id: req.params.id} }).then (function(user) {
+	models.User.findOne({where: {id: req.params.id} }).then(function(user) {
 		
 		models.User.findOne({where: {id: req.user.id} }).then(function(friend) {
 			return user.addFriend(friend);
