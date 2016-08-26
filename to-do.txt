@@ -1,0 +1,6 @@
+-Place bets(Tim)
+	-add friends to bets
+	-notify ref of bets
+	-let ref judge and close bets
+-Remove a friend
+-Chat functionality(Nat)
