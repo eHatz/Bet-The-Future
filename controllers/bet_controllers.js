@@ -18,6 +18,7 @@ router.get('/', function (req, res) {
 });
 //==================SIGNUP GET=============================
 router.get('/signup', function(req, res) {
+
 	res.render('signup'); // uses signup.handlebars
 });
 
@@ -25,7 +26,6 @@ router.get('/signup', function(req, res) {
 
 router.get('/home', function(req, res) {
 	if (req.isAuthenticated()){
-		console.log("findMe: ", req.user.id);
 		models.Bet.findAll({}).then(function(single_bet) {
 			// req.user.getFriends().then(function(friends){
 				res.render('home', {
@@ -52,9 +52,10 @@ router.get('/search-users', function(req, res) {
 router.post('/search-users', function (req, res) {
 	res.redirect('/search-users/' + req.body.userName)
 });
+
 router.get('/search-users/:userName', function (req, res) {
 
-	models.Users.findAll({ where: {UserName: req.params.userName}}).then(function(results) {
+	models.User.findAll({ where: {UserName: req.params.userName}}).then(function(results) {
 		var searchResult = {
 			UserName: []
 		};
@@ -78,15 +79,18 @@ router.get('/search-users/:userName', function (req, res) {
 });
 
 router.post('/add-friend/:id', function(req,res) {
-	models.Friends.create({
-		User1: '1', //placeholder for now, need to get logged in user's id
-		User2: req.params.id
+	models.User.findOne({where: {id: req.params.id} }).then(function(user) {
+		
+		models.User.findOne({where: {id: req.user.id} }).then(function(friend) {
+			return user.addFriend(friend);
+		})
 	}).then(function() {
 		res.redirect('/search-users');
 	}).catch(function(err) {
 		throw err;
-	});
-})
+	})
+});
+ 
 //====================PROFILE GET==========================
 router.get('/profile', function(req, res) {
 	if (req.isAuthenticated()){
@@ -112,8 +116,7 @@ router.get('/friends', function(req, res){
 
 //=====================SIGNUP POST=========================
 router.post('/signUp', function(req, res) {
-
-	models.Users.create({
+	models.User.create({
 		FirstName: req.body.firstName,
 		LastName: req.body.lastName,
 		Email: req.body.email,
@@ -129,8 +132,6 @@ router.post('/signUp', function(req, res) {
 
 //=====================HOME POST========================
 router.post('/home', function(req, res){
-	console.log("request body",req.body);
-	console.log("*******************")
 	models.Bet.create({
 		user:req.body.user,
 		prediction: req.body.prediction,
@@ -166,4 +167,3 @@ router.get('/logout', function(req, res){
 });
 
 module.exports = router;
-
