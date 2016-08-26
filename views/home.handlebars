@@ -15,7 +15,7 @@
   			</div>
 		</nav>
 
-	</div>
+
 	</div>
 
 	<div class='row'>
@@ -53,9 +53,12 @@
 								</div>
 							</div>
 						</form>
+					
+					<div class="col-md-5 friendsBar">
+						{{#each friends}}
+						<p>{{>user_friends this}}</p>
+						{{/each}}
 					</div>
-					<div class="col-md-2 friendsBar">
-
 				</div>
 			</div>
 		</div>

@@ -27,9 +27,12 @@ router.get('/home', function(req, res) {
 	if (req.isAuthenticated()){
 		console.log("findMe: ", req.user.id);
 		models.Bet.findAll({}).then(function(single_bet) {
-			res.render('home', {
-				bet: single_bet
-			})
+			// req.user.getFriends().then(function(friends){
+				res.render('home', {
+					bet: single_bet,
+					// friends: friends
+				})	
+			// })
 		}).catch(function(err){
 			if(err){
 				throw err;
