@@ -21,7 +21,8 @@ module.exports = {
         type: Sequelize.DECIMAL
       },
       judgmentDay: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE 
+        // DATEONLY is the option we want
       },
       createdAt: {
         allowNull: false,
