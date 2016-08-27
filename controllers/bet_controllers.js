@@ -30,20 +30,28 @@ router.get('/home', function(req, res) {
 		res.redirect('/');
 		return false;
 	};
+
+	//test for bet-user association
+	models.Bet.findOne({where: {id: '13'} }).then(function(bet) {
+		console.log('=====================================================');
+		bet.getUsers().then(function(betUsers) {
+			console.log('=====================================================');
+			console.log(betUsers);
+			console.log('=====================================================');
+		});
+		console.log('=====================================================');
+	})
+
 	models.Bet.findAll({}).then(function(single_bet) {
 		models.User.findOne({ where: {id: req.user.id}}).then(function(user) {
 			user.getFriends().then(function(allFriends) {
 				// console.log('THIS IS MY FRIENDS ID', allFriends[0].id)
 				res.render('home', {
-				bet: single_bet,
-				friends: allFriends
-			})
+					bet: single_bet,
+					friends: allFriends
+				})
 			})
 		})
-
-		// req.user.getFriends().then(function(friends){
-
-		// })
 	}).catch(function(err){
 		if(err){
 			throw err;
@@ -52,6 +60,11 @@ router.get('/home', function(req, res) {
 });
 //====================SEARCH GET===========================
 router.get('/search-users', function(req, res) {
+	if (!req.isAuthenticated()) {
+		req.session.error = 'Please sign in!';
+		res.redirect('/');
+		return false;
+	};
 	var friends = []
 	res.render('friends', friends);
 })
@@ -60,6 +73,11 @@ router.post('/search-users', function (req, res) {
 });
 
 router.get('/search-users/:userName', function (req, res) {
+	if (!req.isAuthenticated()) {
+		req.session.error = 'Please sign in!';
+		res.redirect('/');
+		return false;
+	};
 
 	models.User.findAll({ where: {UserName: req.params.userName}}).then(function(results) {
 		var searchResult = {
@@ -147,7 +165,7 @@ router.post('/signUp', function(req, res) {
 });
 
 //=====================HOME POST========================
-router.post('/home', function(req, res){
+router.post('/create-bet', function(req, res){
 	models.Bet.create({
 		user:req.user.UserName,
 		prediction: req.body.prediction,
@@ -155,15 +173,17 @@ router.post('/home', function(req, res){
 		price:req.body.wager,
 		judgmentDay: req.body.judgementDay
 
+	}).then(function(group) {
+		models.User.findOne({where: {id: req.user.id} }).then(function(user) {
+		models.User.findOne({where: {id: req.body.player} }).then(function(friend) {
+			return group.addUsers(req.body.players)
+		})
 	}).then(function() {
-
-	}).then(function(bet_response){
-		console.log("bet_response",bet_response	);
-			console.log("*******************")
-
-		res.redirect('home')
-	}).catch(function(err){
+		res.redirect('/search-users');
+	}).catch(function(err) {
 		throw err;
+	})
+
 	})
 });	
 
