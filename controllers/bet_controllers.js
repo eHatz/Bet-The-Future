@@ -32,25 +32,25 @@ router.get('/home', function(req, res) {
 	};
 
 	//test for bet-user association
-	models.Bet.findOne({where: {id: '13'} }).then(function(bet) {
-		console.log('=====================================================');
-		bet.getUsers().then(function(betUsers) {
-			console.log('=====================================================');
-			console.log(betUsers);
-			console.log('=====================================================');
-		});
-		console.log('=====================================================');
-	})
+	// models.Bet.findOne({where: {id: '13'} }).then(function(bet) {
+	// 	console.log('=====================================================');
+	// 	bet.getUsers().then(function(betUsers) {
+	// 		console.log('=====================================================');
+	// 		console.log(betUsers);
+	// 		console.log('=====================================================');
+	// 	});
+	// 	console.log('=====================================================');
+	// })
 
-	models.Bet.findAll({}).then(function(single_bet) {
-		models.User.findOne({ where: {id: req.user.id}}).then(function(user) {
-			user.getFriends().then(function(allFriends) {
-				// console.log('THIS IS MY FRIENDS ID', allFriends[0].id)
+	models.User.findOne({ where: {id: req.user.id} }).then(function(user) {
+		user.getFriends().then(function(allFriends) {
+			user.getBets().then(function(userBets) {
 				res.render('home', {
-					bet: single_bet,
-					friends: allFriends
+					bet: userBets,
+					friends: allFriends,
+					user:user
 				})
-			})
+			})	
 		})
 	}).catch(function(err){
 		if(err){
@@ -80,7 +80,6 @@ router.get('/search-users/:userName', function (req, res) {
 		res.redirect('/');
 		return false;
 	};
-
 	models.User.findAll({ where: {UserName: req.params.userName}}).then(function(results) {
 		var searchResult = {
 			UserName: []
@@ -161,7 +160,8 @@ router.post('/signUp', function(req, res) {
 //=====================HOME POST========================
 router.post('/create-bet', function(req, res){
 	models.Bet.create({
-		user:req.user.UserName,
+		admin:req.user.UserName,
+		adminImageLink: req.user.ImageLink,
 		prediction: req.body.prediction,
 		referee: req.body.referee,
 		price:req.body.wager,
@@ -170,7 +170,9 @@ router.post('/create-bet', function(req, res){
 	}).then(function(group) {
 		models.User.findOne({where: {id: req.user.id} }).then(function(user) {
 		models.User.findOne({where: {id: req.body.player} }).then(function(friend) {
-			return group.addUsers(req.body.players)
+				var ownerPlayersArr = req.body.players;
+				ownerPlayersArr.push((user.id).toString())
+			return group.addUsers(ownerPlayersArr);
 		})
 	}).then(function() {
 		res.redirect('/search-users');
