@@ -175,7 +175,7 @@ router.post('/create-bet', function(req, res){
 			return group.addUsers(ownerPlayersArr);
 		})
 	}).then(function() {
-		res.redirect('/search-users');
+		res.redirect('/home');
 	}).catch(function(err) {
 		throw err;
 	})
