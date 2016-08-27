@@ -16,12 +16,12 @@ body{
 	background-repeat: no-repeat;
 	position: absolute;
 	transform: translateY(-50%);
-	top:62%;
-	width: 800px;
-	height: 600px;
+	top:65%;
+	width: 900px;
+	height: 700px;
 }
 form{
-	margin-top: 35px;
+	margin-top: 70px;
 
 }
 input{
@@ -30,8 +30,8 @@ input{
     padding: 25px;
 }
 .form-control {
-	padding-top:  23px;
-	padding-bottom: 23px;
+	padding-top:  20px;
+	padding-bottom: 20px;
 	background-color: #ffcb42;
 	color: #613702;
 	font-size: 14px;
@@ -62,9 +62,9 @@ label{
 	background-repeat: no-repeat;
 	position: absolute;
 	transform: translateY(-50%);
-	top:139%;
-	width: 800px;
-	height: 600px;
+	top:168%;
+	width: 900px;
+	height: 710px;
 }
 
 .placeholder{
@@ -152,8 +152,8 @@ a {
 .usrPic{
 	width: 70px;
 	height: 70px;
-	border: 2px solid #f79406;
-	border-radius: 5px;
+	/*border: 2px solid #f79406;
+	border-radius: 5px;*/
 	display: inline-block;
     vertical-align: top;
     margin-left: 10px
@@ -163,10 +163,10 @@ a {
 }
 #friendsDiv{
 	width: 432px;
-	height: 100px;
+	height: 120px;
 	overflow-y: scroll;
     white-space: nowrap;
-    margin-left: -50px;
+    margin-left: -20px;
 	/*border: 2px solid #00bbba;
 	border-radius: 5px;*/
 	/*background-color: white;*/
@@ -182,5 +182,8 @@ h4 {
 }
 label{
 	margin-left: 18px;
+}
+#doThisButton{
+	margin-left: 133px;
 }
 
