@@ -114,7 +114,7 @@ router.post('/add-friend/:id', function(req,res) {
 // });
 router.get('/profile', function(req, res) {
 	if (req.isAuthenticated()){
-		models.User.findAll({}).then(function(user_info) {
+		models.User.findOne({where: {id: req.user.id}}).then(function(user_info) {
 		res.render('profile', {
 			user: user_info
 			})

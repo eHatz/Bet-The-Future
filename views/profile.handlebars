@@ -7,7 +7,7 @@
           <img class= "logo" src="assets/images/logo.png" alt="logo">
 			 </a>
 			 <ul class="nav nav-pills" id="navPills">
-			  <li role="presentation" class="active"><a href="#">Home</a></li>
+			  <li role="presentation" class="active"><a href="/home">Home</a></li>
 			  <li role="presentation"><a href="/profile">Profile</a></li>
 			  <li role="presentation"><a href="#">Log Out</a></li>
 			</ul> 
@@ -23,11 +23,12 @@
 			<div class="row">
 				<div class="col-md-offset-3 col-md-7 col-sm-offset-4 col-sm-5 co-lg-7">
 					<div class="profileInfo">
-							{{this.user}}
-						<img class="usrPic" src="{{this.ImageLink}}">
-							<p class="firstName">{{this.FirstName}}</p>
-							<p class="lastName">{{this.LastName}}</p>
-							<p class="userName">{{this.UserName}}</p>
+						<img class="usrPic" src="{{user.ImageLink}}">
+							<div class="rightSide">
+								<h3 class="firstName">{{user.FirstName}}</h3>
+								<h3 class="lastName">{{user.LastName}}</h3><br>
+								<p class="userName">{{user.UserName}}</p>
+							</div>
 					</div>
 
 					<div class="profileBets">

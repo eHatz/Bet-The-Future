@@ -75,4 +75,28 @@ a {
     width: 900px;
     height: 1000px;
 }
+.usrPic{
+    width: 120px;
+    height: 120px;
+    border: 2px solid #00bbba;
+    border-radius: 11px;
+
+
+}
+p {
+    display: inline-block;
+    font-family: helvetica;
+    }  
+.rightSide{
+    display: inline-block;
+    width: 300px;
+
+}
+h3 {
+    display: inline-block;
+}
+.profileInfo {
+    margin-top: 70px;
+}
+
 
