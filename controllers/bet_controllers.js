@@ -77,7 +77,7 @@ router.get('/search-users/:userName', function (req, res) {
 			};
 			searchResult.UserName.push(users)
 		};
-		res.render('friends', searchResult)
+		res.render('search_users', searchResult)
 
 	}).catch(function(err){
 
