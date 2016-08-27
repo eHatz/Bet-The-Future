@@ -33,7 +33,7 @@ router.get('/home', function(req, res) {
 	models.Bet.findAll({}).then(function(single_bet) {
 		models.User.findOne({ where: {id: req.user.id}}).then(function(user) {
 			user.getFriends().then(function(allFriends) {
-				console.log('THIS IS MY FRIENDS ID', allFriends[0].id)
+				// console.log('THIS IS MY FRIENDS ID', allFriends[0].id)
 				res.render('home', {
 				bet: single_bet,
 				friends: allFriends
