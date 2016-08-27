@@ -121,34 +121,33 @@ router.post('/add-friend/:id', function(req,res) {
 // 	}
 // });
 router.get('/profile', function(req, res) {
-	if (req.isAuthenticated()){
-		models.User.findAll({}).then(function(user_info) {
-		res.render('profile', {
-			user: user_info
-			})
-		console.log(user_info);
-		}).catch(function(err){
-			if(err){
-				throw err;
-			}
-		}) 
-	}else{
-		console.log("else");
+	if (!req.isAuthenticated()) {
 		req.session.error = 'Please sign in!';
 		res.redirect('/');
-	}
+		return false;
+	};
+
+	models.User.findAll({}).then(function(user_info) {
+	res.render('profile', {
+		user: user_info
+		})
+	console.log(user_info);
+	}).catch(function(err){
+		if(err){
+			throw err;
+		}
+	}) 
 });
 
 //====================FRIEND GET========================
 
 router.get('/friends', function(req, res){
-	if (req.isAuthenticated()){
-		res.render('friends');
-	}else{
-		console.log("else");
+	if (!req.isAuthenticated()) {
 		req.session.error = 'Please sign in!';
 		res.redirect('/');
-	}
+		return false;
+	};
+	res.render('friends');
 });
 
 //=====================SIGNUP POST=========================
@@ -170,11 +169,13 @@ router.post('/signUp', function(req, res) {
 //=====================HOME POST========================
 router.post('/home', function(req, res){
 	models.Bet.create({
-		user:req.body.user,
+		user:req.user.UserName,
 		prediction: req.body.prediction,
 		referee: req.body.referee,
-		price:req.body.price,
+		price:req.body.wager,
 		judgmentDay: req.body.judgementDay
+
+	}).then(function() {
 
 	}).then(function(bet_response){
 		console.log("bet_response",bet_response	);

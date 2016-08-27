@@ -31,8 +31,11 @@
 								<input type="text" name="prediction" class="form-control" id="inputPrediction" >
 
 								<label for="referee">Referee:</label>
-								<input type="text" name="referee" class="form-control" id="inputReferee">
-
+								<select class="form-control" name="referee" id="inputReferee">
+									{{#each friends}}
+										<option>{{UserName}}</option>
+									{{/each}}
+								</select>
 
 								<label for="price">Wager:</label>
 								<input type="text" name="wager" class="form-control" id="inputCash">
