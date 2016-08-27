@@ -10,7 +10,7 @@ body{
 
 
 .cloudDiv1{
-	background-image: url("../images/cloud.png");
+	background-image: url("../images/cloud2.png");
 	background-position: -100% 0%;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -152,11 +152,13 @@ a {
 .usrPic{
 	width: 70px;
 	height: 70px;
-	border: 2px solid #00bbba;
+	border: 2px solid #f79406;
 	border-radius: 5px;
 	display: inline-block;
     vertical-align: middle;
-    float: left;
+    margin-left: 10px
+    
+
 
 }
 #friendsDiv{
@@ -167,8 +169,14 @@ a {
 	border: 2px solid #00bbba;
 	border-radius: 5px;
 	background-color: white;
+}
 
+h4 {
+	color: #00bbba;
+	text-align: center;
 
-
+}
+.friendContainer{
+	display: inline-block;
 }
 
