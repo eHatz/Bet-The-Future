@@ -162,8 +162,8 @@ a {
 
 }
 #friendsDiv{
-	width: 600px;
-	height: 200px;
+	width: 432px;
+	height: 100px;
 	overflow-y: scroll;
     white-space: nowrap;
     margin-left: -50px;
@@ -179,5 +179,8 @@ h4 {
 }
 .friendContainer{
 	display: inline-block;
+}
+label{
+	margin-left: 18px;
 }
 
