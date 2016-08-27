@@ -1,11 +1,14 @@
 <div class="friendContainer" id='{{this.id}}'>
+
+	
+	<img class="usrPic" src="{{this.ImageLink}}">
+	
 	<div class="checkbox">
 		<label>
 			<input type="checkbox" id="blankCheckbox" value="{{this.id}}" name="players" aria-label="...">
+				<p class="friendName">{{this.UserName}}</p>
 		</label>
 	</div>
-	<img class="usrPic" src="{{this.ImageLink}}">
-	<p class="friendName">{{this.UserName}}</p>
-	{{!-- <button class="inviteFriend" id='{{this.id}}'>Invite Friend</button> --}}
+
 </div>
 

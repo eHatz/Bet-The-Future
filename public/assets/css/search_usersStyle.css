@@ -74,45 +74,25 @@ a {
     top:90%;
     width: 900px;
     height: 1000px;
-}
-.usrPic{
-    width: 140px;
-    height: 140px;
-    border: 3px solid #00cfd1;
-    border-radius: 9px;
-    vertical-align: top;
+    margin-left: 15%;
    
 }
+#searchBar{
+	margin-left: 107%;
+	margin-top: -45%;
 
-p {
-    display: inline-block;
-    font-family: helvetica;
-    line-height: 3px;
-    color: #00cfd1;
-    font-size: 15px;
-    }  
-
-.rightSide{
-    display: inline-block;
-    width: 270px;
-    margin-left: 10px;
+}
+#search{
+	margin-left: 180%;
+	margin-top: -60%;
+}
+.getFriends{
+	font-family: 'Fascinate Inline', cursive;
+	color: #683b00;
+	letter-spacing: -1px;
+	margin-left: 53%;
+	margin-top: 10%;
 
 
 }
-h3 {
-    display: inline-block;
-    color: #25a0a6;
-    font-weight: bold;
-    margin-top: -5px;
- 
-}
-.profileInfo {
-    margin-top: 130px;
-    margin-left: -50px;
-    border-bottom: 2px dashed #00d2d3;
-    display: inline-block;
-    padding-bottom: 15px;
-}
-
-
 
