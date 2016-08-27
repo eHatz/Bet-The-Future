@@ -15,6 +15,7 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var routes = require('./controllers/bet_controllers.js');
 var models = require('./models');
+<<<<<<< HEAD
 
 var User = models.User; //correct?
 
@@ -30,6 +31,11 @@ var User = models.Users; //correct?
 //   console.log(betArray);
 // });
 //===========================================
+
+
+
+var User = models.User; 
+
 
 var app = express();
 var router = express.Router();
