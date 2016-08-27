@@ -50,15 +50,17 @@ router.get('/home', function(req, res) {
 		}
 	})
 });
-//====================SEARCH GET===========================
+
+//====================SEARCH USERS TO GET SOME FRIENDS===========================
 router.get('/search-users', function(req, res) {
 	var friends = []
-	res.render('friends', friends);
+	res.render('search_users', friends);
 })
 router.post('/search-users', function (req, res) {
 	res.redirect('/search-users/' + req.body.userName)
 });
 
+//===========================================================
 router.get('/search-users/:userName', function (req, res) {
 
 	models.User.findAll({ where: {UserName: req.params.userName}}).then(function(results) {
@@ -75,15 +77,17 @@ router.get('/search-users/:userName', function (req, res) {
 			};
 			searchResult.UserName.push(users)
 		};
-		res.render('friends', searchResult)
+		res.render('search_users', searchResult)
+
 	}).catch(function(err){
+
 		if(err){
 			throw err;
 		}
 	})
 
 });
-
+//=====================GET FRIENDS==========================
 router.post('/add-friend/:id', function(req,res) {
 
 	models.User.findOne({where: {id: req.user.id} }).then(function(user) {
@@ -98,8 +102,8 @@ router.post('/add-friend/:id', function(req,res) {
 	})
 
 });
- 
 
+//=====================GET PROFILE==========================
 router.get('/profile', function(req, res) {
     if (!req.isAuthenticated()) {
         req.session.error = 'Please sign in!';
@@ -119,16 +123,6 @@ router.get('/profile', function(req, res) {
 });
 
 
-//====================FRIEND GET========================
-
-router.get('/friends', function(req, res){
-	if (!req.isAuthenticated()) {
-		req.session.error = 'Please sign in!';
-		res.redirect('/');
-		return false;
-	};
-	res.render('friends');
-});
 
 //=====================SIGNUP POST=========================
 router.post('/signUp', function(req, res) {
