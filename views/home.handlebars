@@ -8,9 +8,10 @@
           	<img class= "logo" src="assets/images/logo.png" alt="logo">
 			 </a>
 			 <ul class="nav nav-pills" id="navPills">
-			  <li role="presentation" class="active"><a href="#">Home</a></li>
+			  <li role="presentation" class="active"><a href="/home">Home</a></li>
 			  <li role="presentation"><a href="/profile">Profile</a></li>
-			  <li role="presentation"><a href="#">Log Out</a></li>
+			  <li role="presentation"><a href="/search-users">Find Friends</a></li>
+			  <li role="presentation"><a href="/logOut">Log Out</a></li>
 			</ul> 
   			</div>
 		</nav>
@@ -19,9 +20,9 @@
 </div>
 
 	<div class='row'>
-		<div class=" col-md-offset-2 col-md-7 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-6 cloudDiv1" id='makeBet'>
+		<div class=" col-md-offset-5 col-md-7 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-6 cloudDiv1" id='makeBet'>
 			<div class="row">
-				<div class="col-md-offset-3 col-md-7 col-sm-offset-4 col-sm-5 co-lg-7">
+				<div class="col-md-offset-2 col-md-7 col-sm-offset-4 col-sm-5 co-lg-7">
 					
 					<form method="POST" action="/home" class="form-horizontal">
 						<div class="form-group">
@@ -31,8 +32,11 @@
 								<input type="text" name="prediction" class="form-control" id="inputPrediction" >
 
 								<label for="referee">Referee:</label>
-								<input type="text" name="referee" class="form-control" id="inputReferee">
-
+								<select class="form-control" name="referee" id="inputReferee">
+									{{#each friends}}
+										<option>{{UserName}}</option>
+									{{/each}}
+								</select>
 
 								<label for="price">Wager:</label>
 								<input type="text" name="wager" class="form-control" id="inputCash">
