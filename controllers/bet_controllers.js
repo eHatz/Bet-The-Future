@@ -85,6 +85,7 @@ router.get('/search-users/:userName', function (req, res) {
 });
 
 router.post('/add-friend/:id', function(req,res) {
+
 	models.User.findOne({where: {id: req.user.id} }).then(function(user) {
 		
 		models.User.findOne({where: {id: req.params.id} }).then(function(friend) {
@@ -95,6 +96,7 @@ router.post('/add-friend/:id', function(req,res) {
 	}).catch(function(err) {
 		throw err;
 	})
+
 });
  
 //====================PROFILE GET==========================
