@@ -30,8 +30,8 @@ input{
     padding: 25px;
 }
 .form-control {
-	padding-top:  23px;
-	padding-bottom: 23px;
+	padding-top:  20px;
+	padding-bottom: 20px;
 	background-color: #ffcb42;
 	color: #613702;
 	font-size: 14px;
@@ -163,7 +163,7 @@ a {
 }
 #friendsDiv{
 	width: 432px;
-	height: 100px;
+	height: 120px;
 	overflow-y: scroll;
     white-space: nowrap;
     margin-left: -50px;
@@ -182,5 +182,8 @@ h4 {
 }
 label{
 	margin-left: 18px;
+}
+#doThisButton{
+	margin-left: 100px;
 }
 
