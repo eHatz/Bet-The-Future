@@ -15,7 +15,7 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var routes = require('./controllers/bet_controllers.js');
 var models = require('./models');
-<<<<<<< HEAD
+
 
 var User = models.User; //correct?
 

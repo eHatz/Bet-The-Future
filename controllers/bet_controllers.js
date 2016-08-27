@@ -33,7 +33,7 @@ router.get('/home', function(req, res) {
 	models.Bet.findAll({}).then(function(single_bet) {
 		models.User.findOne({ where: {id: req.user.id}}).then(function(user) {
 			user.getFriends().then(function(allFriends) {
-				console.log('THIS IS MY FRIENDS ID', allFriends[0].id)
+				// console.log('THIS IS MY FRIENDS ID', allFriends[0].id)
 				res.render('home', {
 				bet: single_bet,
 				friends: allFriends
@@ -99,45 +99,25 @@ router.post('/add-friend/:id', function(req,res) {
 
 });
  
-//====================PROFILE GET==========================
-// router.get('/home', function(req, res) {
-// 	if (req.isAuthenticated()){
-// 		models.Bet.findAll({}).then(function(single_bet) {
-// 			// req.user.getFriends().then(function(friends){
-// 				res.render('home', {
-// 					bet: single_bet,
-// 					// friends: friends
-// 				})	
-// 			// })
-// 		}).catch(function(err){
-// 			if(err){
-// 				throw err;
-// 			}
-// 		})
-// 	}else{
-// 		console.log("else");
-// 		req.session.error = 'Please sign in!';
-// 		res.redirect('/');
-// 	}
-// });
-router.get('/profile', function(req, res) {
-	if (!req.isAuthenticated()) {
-		req.session.error = 'Please sign in!';
-		res.redirect('/');
-		return false;
-	};
 
-	models.User.findAll({}).then(function(user_info) {
-	res.render('profile', {
-		user: user_info
-		})
-	console.log(user_info);
-	}).catch(function(err){
-		if(err){
-			throw err;
-		}
-	}) 
+router.get('/profile', function(req, res) {
+    if (!req.isAuthenticated()) {
+        req.session.error = 'Please sign in!';
+        res.redirect('/');
+        return false;
+    };
+    models.User.findOne({where: {id: req.user.id}}).then(function(user_info) {
+    res.render('profile', {
+        user: user_info
+        })
+    console.log(user_info);
+    }).catch(function(err){
+        if(err){
+            throw err;
+        }
+    }) 
 });
+
 
 //====================FRIEND GET========================
 
