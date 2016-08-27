@@ -16,7 +16,7 @@ body{
 	background-repeat: no-repeat;
 	position: absolute;
 	transform: translateY(-50%);
-	top:65%;
+	top:62%;
 	width: 800px;
 	height: 600px;
 }
@@ -34,7 +34,7 @@ input{
 	padding-bottom: 23px;
 	background-color: #ffcb42;
 	color: #613702;
-	font-size: 18px;
+	font-size: 14px;
 	border: 2px solid #00bbba;
 	border-radius: 11px;
 
@@ -72,7 +72,7 @@ label{
 }
 
 #cloud2{
-	margin-top: 35px;
+	margin-top: 25px;
 }
 #searchButton{
 	margin-left: 10px;
@@ -83,10 +83,8 @@ label{
 	border: 2px solid #00bbba;
 	border-radius: 11px;
 }
- #navBar{ 
-    float: right;
-    margin-top: 27px;
-}
+
+    
 li{
 	color: #ffcb42;
 }
@@ -98,5 +96,57 @@ li{
 	border-radius: 5px;
 	margin-left: -140px;
 }
+#navBar{
+	background-image: url("../images/nav_background.png");
+	
+	position: absolute;
+	width: 100%;
+	float: right;
+    /*margin-top: 15px;*/
 
+}
+
+#navbarBox{
+/*	width: 1100px;*/
+    
+
+    margin-left:initial;
+    margin-right: initial;
+
+}
+.logo{
+	width: 150px;
+	padding: 9px;
+	margin-left: -10px
+}
+ .navbar-default {
+    border-color: transparent;
+}
+ul{
+	float: right;
+	margin-top: 30px;
+}
+.nav-pills>li.active>a{
+	background-color: #f9891a;
+}
+a {
+    color: #673a03;
+    font-weight: bold;
+
+}
+
+#betContainer{
+	width: 300px;
+	height:600px;
+
+}
+.betBox{
+	border: 2px solid #00bbba;
+	border-radius: 5px;
+	margin-left: -100px;
+	line-height: 10px;
+	padding: 10px;
+	font-size: 12px;
+	margin-bottom: 5px;
+}
 

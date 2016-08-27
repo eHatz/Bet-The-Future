@@ -1,51 +1,60 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/homeStyle.css">
 
-<div class="container">
+<div class="container" id="navbarBox">
 	<div class="row">
-		<div class="col-md-12">
-		
-
-		</div>
+		<nav class="navbar navbar-default navbar-static-top" id="navBar">
+  			<div class="container">
+  			<a href="/home">
+          	<img class= "logo" src="assets/images/logo.png" alt="logo">
+			 </a>
+			 <ul class="nav nav-pills" id="navPills">
+			  <li role="presentation" class="active"><a href="/home">Home</a></li>
+			  <li role="presentation"><a href="/profile">Profile</a></li>
+			  <li role="presentation"><a href="/search-users">Find Friends</a></li>
+			  <li role="presentation"><a href="/logOut">Log Out</a></li>
+			</ul> 
+  			</div>
+		</nav>
 	</div>
 
+</div>
+
 	<div class='row'>
-		<div class=" col-md-offset-2 col-md-7 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-6 cloudDiv1" id='makeBet'>
+		<div class=" col-md-offset-5 col-md-7 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-6 cloudDiv1" id='makeBet'>
 			<div class="row">
-				<div class="col-md-offset-3 col-md-7 col-sm-offset-4 col-sm-5 co-lg-7">
+				<div class="col-md-offset-2 col-md-7 col-sm-offset-4 col-sm-5 co-lg-7">
 					
 					<form method="POST" action="/home" class="form-horizontal">
-
 						<div class="form-group">
 							<div class="col-md-10">
 								<h1>Make A Bet</h1>
 								<label for="predition">Prediction:</label>
 								<input type="text" name="prediction" class="form-control" id="inputPrediction" >
+
+								<label for="referee">Referee:</label>
+								<select class="form-control" name="referee" id="inputReferee">
+									{{#each friends}}
+										<option>{{UserName}}</option>
+									{{/each}}
+								</select>
+
+								<label for="price">Wager:</label>
+								<input type="text" name="wager" class="form-control" id="inputCash">
+
+								<label for="judgementDay">Judgement Day:</label>
+								<input name="judgementDay" type="date" class="form-control" id="inputJudgementDay">
+
+								<button type="submit" class="btn btn-default">Let's Do This!</button>
 							</div>
-							</div>
-							<div class="form-group">
-								<div class="col-md-10">
-									<label for="referee">Referee:</label>
-									<input type="text" name="referee" class="form-control" id="inputReferee">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-md-10">
-									<label for="price">Cash, Homie:</label>
-									<input type="text" name="price" class="form-control" id="inputCash">
-									<label for="judgementDay">Judgement Day:</label>
-									<input name="judgementDay" type="date" class="form-control" id="inputJudgementDay">
-								</div>
-							</div>
-						
-							<div class="form-group">
-								<div class="text-center col-md-10">
-									<button type="submit" class="btn btn-default">Let's Do This!</button>
-								</div>
-							</div>
-						</form>
+						</div>
+					</form>
+					
+					<div class="col-md-5" id="friendsBar">
+						<h4>Friends</h4>
+						{{#each friends}}
+							<p>{{>user_friends this}}</p>
+						{{/each}}
 					</div>
-					<div class="col-md-2 friendsBar">
-						{{!-- <h1>Friends</h1> --}}
 				</div>
 			</div>
 		</div>
@@ -55,7 +64,7 @@
 	<div class='row'>
 		<div class="col-md-offset-0 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6 cloudDiv2" id='takeBet'>
 			<div class="row">
-				<div id="cloud2" class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-3 co-lg-7">
+				<div id="cloud2" class="col-md-offset-5 col-md-8 col-sm-offset-4 col-sm-3 co-lg-7">
 					<h1>Take A Bet</h1>
 						<div class="input-group">
 						  	<input id="searchBox" type="text" class="form-control" placeholder="Search">
@@ -67,11 +76,11 @@
 						<div class="row">
 							<div id="cloud2" class="col-md-offset-0 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6">
 						  		<div id="betContainer">
-									{{! {{bets}}
+									
 										{{#each bet}}
 											{{> bet_info this}}
 												
-											{{/each}}
+										{{/each}}
 									</div>
 							</div>
 						</div>

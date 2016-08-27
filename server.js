@@ -15,14 +15,33 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var routes = require('./controllers/bet_controllers.js');
 var models = require('./models');
+
+
+var User = models.User; //correct?
+
 var User = models.Users; //correct?
+
+//================FIND ONE==============
+// User.findOne().then(function(userArray){
+//   console.log(userArray);
+ 
+// });
+//================FIND ALL==================
+// models.Bet.findAll().then(function(betArray){
+//   console.log(betArray);
+// });
+//===========================================
+
+
+
+var User = models.User; 
+
 
 var app = express();
 var router = express.Router();
 
 //Middleware
 app.use(express.static(__dirname + '/public'));
-
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -53,22 +72,17 @@ app.listen(port, function() {
 /////////// PASSPORT \\\\\\\\\\\\
 
 passport.serializeUser(function(user, done) {
-  console.log("serializing " + user.username);
   done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
-  console.log("deserializing " + obj);
   done(null, obj);
 });
 
 module.exports = passport.use("loginStrategy", new LocalStrategy(
   function(loginUser, loginPassword, done) {
- 	console.log("loginUser: " + loginUser);
- 	console.log("loginPassword: " + loginPassword);
-
     User.findOne({where: {UserName: loginUser}}).then(function(user){
-    	console.log("findOne user: ", user)
+    	console.log("userID console: ", user.id)
     	if (!user){
         	return done(null, false, {message: 'Incorrect username.'});
       	}
