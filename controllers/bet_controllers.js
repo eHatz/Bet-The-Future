@@ -79,16 +79,16 @@ router.get('/search-users/:userName', function (req, res) {
 });
 
 router.post('/add-friend/:id', function(req,res) {
-	models.User.findOne({where: {id: req.params.id} }).then(function(user) {
+	// models.User.findOne({where: {id: req.params.id} }).then(function(user) {
 		
-		models.User.findOne({where: {id: req.user.id} }).then(function(friend) {
-			return user.addFriend(friend);
-		})
-	}).then(function() {
-		res.redirect('/search-users');
-	}).catch(function(err) {
-		throw err;
-	})
+	// 	models.User.findOne({where: {id: req.user.id} }).then(function(friend) {
+	// 		return user.addFriend(friend);
+	// 	})
+	// }).then(function() {
+	// 	res.redirect('/search-users');
+	// }).catch(function(err) {
+	// 	throw err;
+	// })
 });
  
 //====================PROFILE GET==========================
