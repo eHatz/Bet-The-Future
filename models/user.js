@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
 		associate: function(models) {
 			// associations can be defined here
 			User.belongsToMany(User, { as: 'Friends', through: 'UserFriends'})
-			User.belongsToMany(models.Bet, {as: 'betId', through: 'UserBet'})
+			User.belongsToMany(models.Bet, {through: 'UserBet'})
 		}
 	}
 });
