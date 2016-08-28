@@ -42,7 +42,7 @@
 
 								<label for="judgementDay">Judgement Day:</label>
 								<input name="judgementDay" type="date" class="form-control" id="inputJudgementDay">
-								<h4>Friends</h4>
+								<h2>Friends</h2>
 								<div class="col-md-5" id="friendsDiv">
 									
 									{{#each friends}}
@@ -64,8 +64,8 @@
 	<div class='row'>
 		<div class="col-md-offset-1 col-md-9 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-7 cloudDiv2" id='takeBet'>
 			<div class="row">
-				<div id="cloud2" class="col-md-offset-3 col-md-6 col-sm-offset-4 col-sm-3 co-lg-7">
-					<h1>Take A Bet</h1>
+				<div id="cloud2" class="col-md-offset-4 col-md-7 col-sm-offset-4 col-sm-3 co-lg-7">
+					
 						{{!-- <div class="input-group">
 						  	<input id="searchBox" type="text" class="form-control" placeholder="Search">
 						  		<div class="input-group-btn">
@@ -74,13 +74,13 @@
 				  		</div> --}}
 							
 						<div class="row">
-							<div id="cloud2" class="col-md-offset-0 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6">
+							<div id="cloud2" class="col-md-offset-1 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6">
 						  		<div id="betContainer">
+						  			<section>Take A Bet</section>
 										{{#each bet}}
 											{{> bet_info this}}
-												
 										{{/each}}
-									</div>
+								</div>
 							</div>
 						</div>
 					</div>
