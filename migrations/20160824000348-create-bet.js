@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      admin: {
+      adminPlayer: {
         type: Sequelize.STRING
       },
       adminImageLink: {
@@ -17,14 +17,26 @@ module.exports = {
       prediction: {
         type: Sequelize.STRING
       },
+      challenge: {
+        type: Sequelize.STRING
+      },
+      secondPlayer: {
+        type: Sequelize.STRING
+      },
       referee: {
         type: Sequelize.STRING
       },
+      winner: {
+        type: Sequelize.STRING
+      },
+      pending: {
+        type: Sequelize.BOOLEAN
+      },
       price: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.STRING
       },
       judgmentDay: {
-        type: Sequelize.DATE 
+        type: Sequelize.DATEONLY
         // DATEONLY is the option we want
       },
       createdAt: {
