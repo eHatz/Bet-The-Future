@@ -19,6 +19,7 @@ router.get('/', function (req, res) {
 		res.redirect('/home');
 		return false;
 	};
+
 	res.render('login');
 });
 //==================SIGNUP GET=============================
@@ -39,8 +40,18 @@ router.get('/home', function(req, res) {
 	models.User.findOne({ where: {id: req.user.id} }).then(function(user) {
 		user.getFriends().then(function(allFriends) {
 			user.getBets().then(function(userBets) {
+				var betReferee = [];
+				var betParticipant = [];
+				for (var i = 0; i < userBets.length; i++) {
+					if (userBets[i].referee === user.UserName) {
+						betReferee.push(userBets[i]);
+					} else {
+						betParticipant.push(userBets[i]);
+					};
+				}
 				res.render('home', {
-					bet: userBets,
+					bet: betParticipant,
+					ref: betReferee,
 					friends: allFriends,
 					user:user
 				})
@@ -162,12 +173,13 @@ router.post('/create-bet', function(req, res){
 		judgmentDay: req.body.judgementDay
 
 	}).then(function(group) {
-		var playersSelected = req.body.players;
+		var playersSelected = req.body.participant;
 		//checkbox allows more than one user but if only one is selcted the data type is number not array
+		console.log(playersSelected)
 		if (typeof playersSelected === 'string') {
-			playersSelected = [req.body.players];
+			playersSelected = [req.body.participant];
 		} else {
-			playersSelected = req.body.players;
+			playersSelected = req.body.participant;
 		};
 
 		playersSelected.push((req.user.id).toString()); //adds owner to array in order to add to associaion
