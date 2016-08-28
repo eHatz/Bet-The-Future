@@ -42,6 +42,7 @@ router.get('/home', function(req, res) {
 			user.getBets().then(function(userBets) {
 				var betReferee = [];
 				var betParticipant = [];
+				var allBetParticipants = [];
 				for (var i = 0; i < userBets.length; i++) {
 					if (userBets[i].referee === user.UserName) {
 						betReferee.push(userBets[i]);
@@ -49,6 +50,14 @@ router.get('/home', function(req, res) {
 						betParticipant.push(userBets[i]);
 					};
 				}
+				for (var i = 0; i < userBets.length; i++) {
+					userBets[0].getUsers().then(function(allUsers) {
+						console.log('=================================================================')
+						console.log(allUsers);
+						console.log('=================================================================')
+					})
+				}
+				//since user can see the bet that mean they are either a participant or a ref 
 				res.render('home', {
 					bet: betParticipant,
 					ref: betReferee,
