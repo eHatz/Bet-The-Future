@@ -164,33 +164,37 @@ router.post('/signUp', function(req, res) {
 
 //=====================HOME POST========================
 router.post('/create-bet', function(req, res){
-	models.Bet.create({
-		admin:req.user.UserName,
-		adminImageLink: req.user.ImageLink,
-		prediction: req.body.prediction,
-		referee: req.body.referee,
-		price:req.body.wager,
-		judgmentDay: req.body.judgementDay
+	models.User.findOne({ where: {id: parseInt(req.body.participant)} }).then(function(secondPlayer) {
+		console.log(secondPlayer);
+		models.Bet.create({
+			adminPlayer:req.user.UserName,
+			adminImageLink: req.user.ImageLink,
+			prediction: req.body.prediction,
+			challenge: req.body.challenge,
+			secondPlayer: secondPlayer.UserName,
+			referee: req.body.referee,
+			pending: true,
+			price:req.body.wager,
+			judgmentDay: req.body.judgementDay
 
-	}).then(function(group) {
-		var playersSelected = req.body.participant;
-		//checkbox allows more than one user but if only one is selcted the data type is number not array
-		console.log(playersSelected)
-		if (typeof playersSelected === 'string') {
-			playersSelected = [req.body.participant];
-		} else {
-			playersSelected = req.body.participant;
-		};
+		}).then(function(group) {
+			var playersSelected = req.body.participant;
+			//checkbox allows more than one user but if only one is selcted the data type is number not array
+			if (typeof playersSelected === 'string') {
+				playersSelected = [req.body.participant];
+			} else {
+				playersSelected = req.body.participant;
+			};
 
-		playersSelected.push((req.user.id).toString()); //adds owner to array in order to add to associaion
-		return group.addUsers(playersSelected);
+			playersSelected.push((req.user.id).toString()); //adds owner to array in order to add to associaion
+			return group.addUsers(playersSelected);
 
-	}).then(function() {
-		res.redirect('/home');
-	}).catch(function(err) {
-		throw err;
+		}).then(function() {
+			res.redirect('/home');
+		}).catch(function(err) {
+			throw err;
+		})
 	})
-
 	
 });	
 

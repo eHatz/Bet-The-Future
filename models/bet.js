@@ -1,12 +1,16 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Bet = sequelize.define('Bet', {
-    admin: DataTypes.STRING,
+    adminPlayer: DataTypes.STRING,
     adminImageLink: DataTypes.STRING,
     prediction: DataTypes.STRING,
+    challenge: DataTypes.STRING,
+    secondPlayer: DataTypes.STRING,
     referee: DataTypes.STRING,
+    winner: DataTypes.STRING,
+    pending: DataTypes.BOOLEAN,
     price: DataTypes.STRING,
-    judgmentDay: DataTypes.DATE
+    judgmentDay: DataTypes.DATEONLY
   }, {
     classMethods: {
       associate: function(models) {
