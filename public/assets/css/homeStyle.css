@@ -44,6 +44,8 @@ h1{
 	color: #683b00;
 	letter-spacing: -1px;
 	text-align: center;
+	/*text-shadow: 3px 2px #f9891a; */
+	font-size: 38px;
 }
 label{
 	font-size: 15px;
@@ -67,9 +69,6 @@ label{
 	height: 710px;
 }
 
-.placeholder{
-	color: #613702;
-}
 
 #cloud2{
 	margin-top: 30px;
@@ -88,18 +87,13 @@ li{
 }
 #navBar{
 	background-image: url("../images/nav_background.png");
-	
 	position: absolute;
 	width: 100%;
 	float: right;
-    /*margin-top: 15px;*/
 
 }
 
 #navbarBox{
-/*	width: 1100px;*/
-    
-
     margin-left:initial;
     margin-right: initial;
 
@@ -148,25 +142,17 @@ a {
 .usrPic{
 	width: 70px;
 	height: 70px;
-	/*border: 2px solid #f79406;
-	border-radius: 5px;*/
 	display: inline-block;
     vertical-align: top;
     margin-left: 10px
-    
-
-
 }
+
 #friendsDiv{
 	width: 432px;
 	height: 120px;
 	overflow-y: scroll;
     white-space: nowrap;
     margin-left: -20px;
-
-	/*border: 2px solid #00bbba;
-	border-radius: 5px;*/
-	/*background-color: white;*/
 }
 
 p {
