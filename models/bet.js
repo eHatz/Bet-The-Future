@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     adminImageLink: DataTypes.STRING,
     prediction: DataTypes.STRING,
     referee: DataTypes.STRING,
-    price: DataTypes.DECIMAL,
+    price: DataTypes.STRING,
     judgmentDay: DataTypes.DATE
   }, {
     classMethods: {
