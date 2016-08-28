@@ -65,13 +65,14 @@ label{
 	position: absolute;
 	transform: translateY(-50%);
 	top:164%;
-	width: 900px;
-	height: 710px;
+	width: 953px;
+    height: 852px;
 }
 
 
 #cloud2{
-	margin-top: 30px;
+	margin-top:7%;
+
 }
     
 li{
@@ -145,6 +146,7 @@ a {
     vertical-align: top;
     margin-left: 2px;
     border-radius: 10px;
+    border: 2px solid #00bbba;
 
 }
 
