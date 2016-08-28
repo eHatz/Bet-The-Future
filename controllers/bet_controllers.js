@@ -14,6 +14,11 @@ var models = require('../models');
 
 //==================LOGIN GET============================
 router.get('/', function (req, res) {
+	if (req.isAuthenticated()) {
+		req.session.error = 'Please sign in!';
+		res.redirect('/home');
+		return false;
+	};
 	res.render('login');
 });
 //==================SIGNUP GET=============================
@@ -31,26 +36,15 @@ router.get('/home', function(req, res) {
 		return false;
 	};
 
-	//test for bet-user association
-	models.Bet.findOne({where: {id: '13'} }).then(function(bet) {
-		console.log('=====================================================');
-		bet.getUsers().then(function(betUsers) {
-			console.log('=====================================================');
-			console.log(betUsers);
-			console.log('=====================================================');
-		});
-		console.log('=====================================================');
-	})
-
-	models.Bet.findAll({}).then(function(single_bet) {
-		models.User.findOne({ where: {id: req.user.id}}).then(function(user) {
-			user.getFriends().then(function(allFriends) {
-				// console.log('THIS IS MY FRIENDS ID', allFriends[0].id)
+	models.User.findOne({ where: {id: req.user.id} }).then(function(user) {
+		user.getFriends().then(function(allFriends) {
+			user.getBets().then(function(userBets) {
 				res.render('home', {
-					bet: single_bet,
-					friends: allFriends
+					bet: userBets,
+					friends: allFriends,
+					user:user
 				})
-			})
+			})	
 		})
 	}).catch(function(err){
 		if(err){
@@ -80,7 +74,6 @@ router.get('/search-users/:userName', function (req, res) {
 		res.redirect('/');
 		return false;
 	};
-
 	models.User.findAll({ where: {UserName: req.params.userName}}).then(function(results) {
 		var searchResult = {
 			UserName: []
@@ -161,24 +154,32 @@ router.post('/signUp', function(req, res) {
 //=====================HOME POST========================
 router.post('/create-bet', function(req, res){
 	models.Bet.create({
-		user:req.user.UserName,
+		admin:req.user.UserName,
+		adminImageLink: req.user.ImageLink,
 		prediction: req.body.prediction,
 		referee: req.body.referee,
 		price:req.body.wager,
 		judgmentDay: req.body.judgementDay
 
 	}).then(function(group) {
-		models.User.findOne({where: {id: req.user.id} }).then(function(user) {
-		models.User.findOne({where: {id: req.body.player} }).then(function(friend) {
-			return group.addUsers(req.body.players)
-		})
+		var playersSelected = req.body.players;
+		//checkbox allows more than one user but if only one is selcted the data type is number not array
+		if (typeof playersSelected === 'string') {
+			playersSelected = [req.body.players];
+		} else {
+			playersSelected = req.body.players;
+		};
+
+		playersSelected.push((req.user.id).toString()); //adds owner to array in order to add to associaion
+		return group.addUsers(playersSelected);
+
 	}).then(function() {
 		res.redirect('/home');
 	}).catch(function(err) {
 		throw err;
 	})
 
-	})
+	
 });	
 
 //=====================PASSPORT========================

@@ -1,7 +1,8 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Bet = sequelize.define('Bet', {
-    user: DataTypes.STRING,
+    admin: DataTypes.STRING,
+    adminImageLink: DataTypes.STRING,
     prediction: DataTypes.STRING,
     referee: DataTypes.STRING,
     price: DataTypes.DECIMAL,

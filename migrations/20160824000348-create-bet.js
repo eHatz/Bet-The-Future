@@ -8,7 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user: {
+      admin: {
+        type: Sequelize.STRING
+      },
+      adminImageLink: {
         type: Sequelize.STRING
       },
       prediction: {
