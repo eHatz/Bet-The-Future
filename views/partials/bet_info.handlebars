@@ -1,29 +1,27 @@
 <div class="betBox">
-	<div class="usrPic">
-	<img class="usrPic" src="{{adminImageLink}}">
+	<div class="betOwnerPic">
+		<img class="betOwnerPic" src="{{adminImageLink}}">
 	</div>
-	
-	<div class="usrInfo">
-		<p class="usrName"> User: {{admin}}</p>
-	</div>
+
 	
 	<div class="betInfo">
-
+		<div class="usrInfo">
+				<h5 class="usrName"><strong><span id="captain">CAPTAIN: </span></strong>{{admin}}</h5>
+				<button class="acceptBetButton">Accept Bet!</button>
+			</div>
 		<div class="prediction">
-			<p><strong><span>Bet Description: </span></strong>{{prediction}}</p>
+			<p id="betInput"><strong><span>Prediction: </span></strong>{{prediction}}</p>
+			<p><strong><span>Challenge: </span></strong>{{challenge}}</p>
 		</div>
 
 		<div class="referee">
 			<p><strong><span>Referee: </span></strong>{{referee}}</p>
+			<p><strong><span>Participants: </span></strong>{{participants}}</p>
 		</div>
 
-		<div class="prediction">
-			<p><strong><span>Judgement Day: </span></strong>{{judgmentDay}}</p>
-		</div>
-
-		<div class="bottom">
-			<p class="betPrice"> Bet Price:{{price}} </p>
-			<button class="acceptBetButton">Accept Bet!</button>
+		<div class="dayPrice">
+			<p class="betPrice"><strong><span>Bet Price: </span></strong>{{price}} dollars</p>
+			<p><strong><span>Judgement Day: </span></strong>Aug 30 2016<!-- {{judgmentDay}} --></p>
 		</div>
 	</div>
 </div>

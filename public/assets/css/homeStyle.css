@@ -12,7 +12,7 @@ body{
 .cloudDiv1{
 	background-image: url("../images/cloud2.png");
 	background-position: -100% 0%;
-	background-size: contain;
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	position: absolute;
 	transform: translateY(-50%);
@@ -59,8 +59,8 @@ label{
 }
 .cloudDiv2{
 	background-image: url("../images/cloud2.png");
-	background-position: -100% 0%;
-	background-size: contain;
+	background-position: -100% 100%;
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	position: absolute;
 	transform: translateY(-50%);
@@ -101,7 +101,7 @@ li{
 .logo{
 	width: 150px;
 	padding: 9px;
-	margin-left: -10px
+	margin-left: -67%;
 }
  .navbar-default {
     border-color: transparent;
@@ -127,15 +127,14 @@ a {
 .betBox{
 	border: 2px solid #00bbba;
 	border-radius: 15px;
-	margin-left: -150px;
+	margin-left: -200px;
 	line-height: 10px;
 	padding: 10px;
 	font-size: 12px;
-	margin-bottom: 10px;
 	display: inline-flex;
 	margin-top: 10px;
-	width: 500px;
-	height: 130px;
+	width: 573px;
+	height: initial;
 	
 
 }
@@ -144,11 +143,13 @@ a {
 	height: 70px;
 	display: inline-block;
     vertical-align: top;
-    margin-left: 10px
+    margin-left: 2px;
+    border-radius: 10px;
+
 }
 
 #friendsDiv{
-	width: 432px;
+	width: 470px;
 	height: 120px;
 	overflow-y: scroll;
     white-space: nowrap;
@@ -158,7 +159,9 @@ a {
 p {
 	font-size: 15px;
 	color: #683b00;
-	margin-left: 20px;
+	margin-left: 10px;
+	display: inline-table;
+
 	
 }
 .friendContainer{
@@ -179,7 +182,7 @@ p {
 	font-weight: bold;
 	font-size: 14px;
 	color: #00bbba;
-	margin-left: 20px;
+	
 }	
 
 section{
@@ -198,10 +201,11 @@ h2 {
 h5{
 	color: #ffcb42;
 	font-size: 16px;
-    color: #f9891a;
+    color: #683b00;
     font-weight: bold;
     font-family: inherit;
     margin-left: 10px;
+    display: inline-table;
 
 }
 .acceptBetButton{
@@ -212,18 +216,47 @@ h5{
     padding: 8px;
     color: white;
     float: right;
-    margin-top: -26px;
+    margin-top: inherit;
+    margin-right: -71%;
+    
 
 
 }
 .betInfo{
-	margin-top: 10px;
+	width: 370px;
+	margin-top: initial;
+
+
 }
 span{
 	color:#00bbba;
+
+}
+.referee{
+	display: inline-flex;
+	width: 500px;
+}
+#captain{
+	color:#f9891a;
 }
 
+.betOwnerPic{
+	width: 128px;
+	height: 128px;
+    border-radius: 10px;
+    margin-top: 2px;
+    margin-left: 1px;
+    margin-right: 8px;
+}
+#betInput{
+	line-height: initial;
 
+}
+
+#searchUsers{
+	margin-left: 33%;
+	margin-top: 2%;
+}
 
 
 
