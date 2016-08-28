@@ -74,15 +74,15 @@ router.get('/home', function(req, res) {
 });
 
 //====================SEARCH USERS TO GET SOME FRIENDS===========================
-router.get('/search-users', function(req, res) {
-	if (!req.isAuthenticated()) {
-		req.session.error = 'Please sign in!';
-		res.redirect('/');
-		return false;
-	};
-	var friends = []
-	res.render('search_users', friends);
-})
+// router.get('/search-users', function(req, res) {
+// 	if (!req.isAuthenticated()) {
+// 		req.session.error = 'Please sign in!';
+// 		res.redirect('/');
+// 		return false;
+// 	};
+// 	var friends = []
+// 	res.render('search_users', friends);
+// })
 router.post('/search-users', function (req, res) {
 	res.redirect('/search-users/' + req.body.userName)
 });
@@ -127,7 +127,7 @@ router.post('/add-friend/:id', function(req,res) {
 			return user.addFriend(friend);
 		})
 	}).then(function() {
-		res.redirect('/search-users');
+		res.redirect('/home');
 	}).catch(function(err) {
 		throw err;
 	})

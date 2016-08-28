@@ -101,7 +101,7 @@ li{
 .logo{
 	width: 150px;
 	padding: 9px;
-	margin-left: -10px
+	margin-left: -67%;
 }
  .navbar-default {
     border-color: transparent;
@@ -223,7 +223,10 @@ span{
 	color:#00bbba;
 }
 
-
+#searchUsers{
+	margin-left: 33%;
+	margin-top: 2%;
+}
 
 
 
