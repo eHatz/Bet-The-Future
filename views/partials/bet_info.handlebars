@@ -1,31 +1,26 @@
 <div class="betBox">
-	<div class="usrPic">
-	<img class="usrPic" src="{{user.ImageLink}}">
+	<div class="usrInfo">
+		<img class="usrPic" src="{{user.ImageLink}}">
+		<h5 class="usrName"> Captain: {{user.FirstName}}</h5>
 	</div>
 	
-	<div class="usrInfo">
-		<p class="usrName"> User: {{user.FirstName}}</p>
-	</div>
-
 	<div class="betInfo">
 
-	<div class="prediction">
-		<p> Bet Description:{{prediction}}</p>
-	</div>
+		<div class="prediction">
+			<p><strong><span>Bet Description: </span></strong>{{prediction}}</p>
+		</div>
 
-	<div class="referee">
-	<p> Referee:{{referee}}</p>
-	</div>
+		<div class="referee">
+			<p><strong><span>Referee: </span></strong>{{referee}}</p>
+		</div>
 
-	<div class="prediction">
-	<p> Judgement Day:{{judgmentDay}}</p>
-	</div>
+		<div class="prediction">
+			<p><strong><span>Judgement Day: </span></strong>{{judgmentDay}}</p>
+		</div>
 
-	<div class="bottom">
-
-	<p class="betPrice"> Bet Price:{{price}} </p>
-	<button class="interestedButton">Interested?</button>
-
-	</div>
+		<div class="bottom">
+			<p class="betPrice"> Bet Price:{{price}} </p>
+			<button class="acceptBetButton">Accept Bet!</button>
+		</div>
 	</div>
 </div>

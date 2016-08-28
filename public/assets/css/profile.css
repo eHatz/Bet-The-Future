@@ -88,7 +88,7 @@ p {
     display: inline-block;
     font-family: helvetica;
     line-height: 3px;
-    color: #00cfd1;
+    color: #683b00;
     font-size: 15px;
     }  
 
@@ -112,6 +112,9 @@ h3 {
     border-bottom: 2px dashed #00d2d3;
     display: inline-block;
     padding-bottom: 15px;
+}
+span{
+    color:#f9891a;
 }
 
 
