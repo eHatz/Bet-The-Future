@@ -14,6 +14,11 @@ var models = require('../models');
 
 //==================LOGIN GET============================
 router.get('/', function (req, res) {
+	if (req.isAuthenticated()) {
+		req.session.error = 'Please sign in!';
+		res.redirect('/home');
+		return false;
+	};
 	res.render('login');
 });
 //==================SIGNUP GET=============================
@@ -30,17 +35,6 @@ router.get('/home', function(req, res) {
 		res.redirect('/');
 		return false;
 	};
-
-	//test for bet-user association
-	// models.Bet.findOne({where: {id: '13'} }).then(function(bet) {
-	// 	console.log('=====================================================');
-	// 	bet.getUsers().then(function(betUsers) {
-	// 		console.log('=====================================================');
-	// 		console.log(betUsers);
-	// 		console.log('=====================================================');
-	// 	});
-	// 	console.log('=====================================================');
-	// })
 
 	models.User.findOne({ where: {id: req.user.id} }).then(function(user) {
 		user.getFriends().then(function(allFriends) {
@@ -168,19 +162,24 @@ router.post('/create-bet', function(req, res){
 		judgmentDay: req.body.judgementDay
 
 	}).then(function(group) {
-		models.User.findOne({where: {id: req.user.id} }).then(function(user) {
-		models.User.findOne({where: {id: req.body.player} }).then(function(friend) {
-				var ownerPlayersArr = req.body.players;
-				ownerPlayersArr.push((user.id).toString())
-			return group.addUsers(ownerPlayersArr);
-		})
+		var playersSelected = req.body.players;
+		//checkbox allows more than one user but if only one is selcted the data type is number not array
+		if (typeof playersSelected === 'string') {
+			playersSelected = [req.body.players];
+		} else {
+			playersSelected = req.body.players;
+		};
+
+		playersSelected.push((req.user.id).toString()); //adds owner to array in order to add to associaion
+		return group.addUsers(playersSelected);
+
 	}).then(function() {
 		res.redirect('/home');
 	}).catch(function(err) {
 		throw err;
 	})
 
-	})
+	
 });	
 
 //=====================PASSPORT========================
