@@ -41,25 +41,16 @@ router.get('/home', function(req, res) {
 		user.getFriends().then(function(allFriends) {
 			user.getBets().then(function(userBets) {
 				var betReferee = [];
-				var betParticipant = [];
-				var allBetParticipants = [];
+				var userBetArr = [];				
 				for (var i = 0; i < userBets.length; i++) {
 					if (userBets[i].referee === user.UserName) {
 						betReferee.push(userBets[i]);
 					} else {
-						betParticipant.push(userBets[i]);
+						userBetArr.push(userBets[i]);
 					};
-				}
-				for (var i = 0; i < userBets.length; i++) {
-					userBets[0].getUsers().then(function(allUsers) {
-						console.log('=================================================================')
-						console.log(allUsers);
-						console.log('=================================================================')
-					})
-				}
-				//since user can see the bet that mean they are either a participant or a ref 
+				};
 				res.render('home', {
-					bet: betParticipant,
+					bet: userBetArr,
 					ref: betReferee,
 					friends: allFriends,
 					user:user
@@ -173,33 +164,37 @@ router.post('/signUp', function(req, res) {
 
 //=====================HOME POST========================
 router.post('/create-bet', function(req, res){
-	models.Bet.create({
-		admin:req.user.UserName,
-		adminImageLink: req.user.ImageLink,
-		prediction: req.body.prediction,
-		referee: req.body.referee,
-		price:req.body.wager,
-		judgmentDay: req.body.judgementDay
+	models.User.findOne({ where: {id: parseInt(req.body.participant)} }).then(function(secondPlayer) {
+		console.log(secondPlayer);
+		models.Bet.create({
+			adminPlayer:req.user.UserName,
+			adminImageLink: req.user.ImageLink,
+			prediction: req.body.prediction,
+			challenge: req.body.challenge,
+			secondPlayer: secondPlayer.UserName,
+			referee: req.body.referee,
+			pending: true,
+			price:req.body.wager,
+			judgmentDay: req.body.judgementDay
 
-	}).then(function(group) {
-		var playersSelected = req.body.participant;
-		//checkbox allows more than one user but if only one is selcted the data type is number not array
-		console.log(playersSelected)
-		if (typeof playersSelected === 'string') {
-			playersSelected = [req.body.participant];
-		} else {
-			playersSelected = req.body.participant;
-		};
+		}).then(function(group) {
+			var playersSelected = req.body.participant;
+			//checkbox allows more than one user but if only one is selcted the data type is number not array
+			if (typeof playersSelected === 'string') {
+				playersSelected = [req.body.participant];
+			} else {
+				playersSelected = req.body.participant;
+			};
 
-		playersSelected.push((req.user.id).toString()); //adds owner to array in order to add to associaion
-		return group.addUsers(playersSelected);
+			playersSelected.push((req.user.id).toString()); //adds owner to array in order to add to associaion
+			return group.addUsers(playersSelected);
 
-	}).then(function() {
-		res.redirect('/home');
-	}).catch(function(err) {
-		throw err;
+		}).then(function() {
+			res.redirect('/home');
+		}).catch(function(err) {
+			throw err;
+		})
 	})
-
 	
 });	
 

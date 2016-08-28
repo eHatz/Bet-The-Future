@@ -18,10 +18,10 @@
 
 
 
-			<form  method="POST" action="/add-friend/:id" class="navbar-form navbar-left" role="search" id = "searchUsers">
+			<form  method="POST" action="/search-users" class="navbar-form navbar-left" role="search" id = "searchUsers">
 			
 		        <div class="form-group">
-		          <input type="text" class="form-control" placeholder="Search for Friends!">
+		          <input type="text" class="form-control" name='userName' placeholder="Search for Friends!">
 		        </div>
 		        <button type="submit" class="btn btn-default" id="submit">Submit</button>
 		    </form>
@@ -53,6 +53,9 @@
 								<h1>Make A Bet</h1>
 								<label for="predition">Prediction:</label>
 								<input type="text" name="prediction" class="form-control" id="inputPrediction"required>
+
+								<label for="predition">Challenge:</label>
+								<input type="text" name="challenge" class="form-control" id="inputPrediction"required>
 
 								<label for="referee">Referee:</label>
 								<select class="form-control" name="referee" id="inputReferee"required>
