@@ -52,10 +52,10 @@
 							<div class="col-md-10">
 								<h1>Make A Bet</h1>
 								<label for="predition">Prediction:</label>
-								<input type="text" name="prediction" class="form-control" id="inputPrediction" >
+								<input type="text" name="prediction" class="form-control" id="inputPrediction"required>
 
 								<label for="referee">Referee:</label>
-								<select class="form-control" name="referee" id="inputReferee">
+								<select class="form-control" name="referee" id="inputReferee"required>
 									{{#each friends}}
 										<option>{{UserName}}</option>
 									{{/each}}
@@ -87,7 +87,7 @@
 
 	<div class='row'>
 		<div class="col-md-offset-1 col-md-9 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-7 cloudDiv2" id='takeBet'>
-			<div class="row">
+			<div class="row" id=" betConatiner">
 				<div id="cloud2" class="col-md-offset-4 col-md-7 col-sm-offset-4 col-sm-3 co-lg-7">
 					
 						{{!-- <div class="input-group">
@@ -99,7 +99,7 @@
 							
 						<div class="row">
 							<div id="cloud2" class="col-md-offset-1 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6">
-						  		<div id="betContainer">
+						  		<div>
 						  			<section>Take A Bet</section>
 										{{#each bet}}
 											{{> bet_info this}}
