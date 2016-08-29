@@ -152,11 +152,11 @@ router.post('/signUp', function(req, res) {
 	var newEmail = req.body.email;
 	console.log(newName, newEmail);
 		models.User.findAll({ 
-			//Check for email and username in the DB
-			where: sequelize.or(
-				{UserName: newName},
-				{Email: newEmail}
-			)
+			// Check for email and username in the DB
+			// where: sequelize.or(
+			// 	{UserName: newName},
+			// 	{Email: newEmail}
+			// )
 		}).then(function(data){
 			//Grab incoming matched username and email, if any
 			var dataName = data[0].dataValues.UserName;
