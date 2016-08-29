@@ -1,23 +1,28 @@
-<div class="profilebetsContainer">
-	<div class="prediction">
-		
-		<div class="leftSide">
-			<div class="prediction">
-				<p> Bet Description:{{prediction}}</p>
-			</div>
+<div class="betBox">
+	<div class="betOwnerPic">
+		<img class="betOwnerPic" src="{{user.ImageLink}}">
+	</div>
 
-			<div class="referee">
-				<p> Referee:{{referee}}</p>
+	
+	<div class="betInfo">
+		<div class="usrInfo">
+				<h5 class="usrName"><strong><span id="captain">CAPTAIN: </span></strong>{{adminPlayer}}</h5>
+				<button class="acceptBetButton">You're On!</button>
+				<button class="declineBetButton">No Way Man!</button>
 			</div>
+		<div class="prediction">
+			<p id="betInput"><strong><span>{{adminPlayer}}'s Prediction: </span></strong>{{prediction}}</p>
+			<p><strong><span>{{secondPlayer}}'s Challenge: </span></strong>{{challenge}}</p>
 		</div>
-			
-		<div class="rightSide">
-			<div class="judgementDay">
-				<p> Judgement Day:{{judgmentDay}}</p>
-			</div>
 
-			<div class="price">
-				<p> Price:{{price}}</p>
-			</div>
+		<div class="referee">
+			<p><strong><span>Referee: </span></strong>{{referee}}</p>
+			<p><strong><span>Participants: </span></strong>{{adminPlayer}}, {{secondPlayer}}</p>
 		</div>
+
+		<div class="dayPrice">
+			<p class="betPrice"><strong><span>Bet Price: </span></strong>{{price}} dollars</p>
+			<p><strong><span>Judgement Day: </span></strong>Aug 30 2016<!-- {{judgmentDay}} --></p>
+		</div>
+	</div>
 </div>
