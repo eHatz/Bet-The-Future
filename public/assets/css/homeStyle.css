@@ -26,6 +26,7 @@ body{
 
 .betResForm {
 	float: right;
+	
 }
 input{
 	border: 2px solid;
@@ -57,8 +58,10 @@ label{
 }
 .btn-default {
     color: white;
-    background-color: #00babf;
-    border-color: #04a3a3;
+    background-color: #f9891a;
+    border-color: #00babf;
+    /* float: right; */
+    margin-left: 72%;
 }
 .cloudDiv2{
 	background-image: url("../images/cloud2.png");
