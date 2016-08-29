@@ -13,11 +13,7 @@
 			  <li role="presentation"><a href="/profile">Profile</a></li>
 			  <li role="presentation"><a href="/logOut">Log Out</a></li>
 			</ul> 
-			
-
 			<form  method="POST" action="/search-users" class="navbar-form navbar-left" role="search" id = "searchUsers">
-			
-
 		        <div class="form-group">
 		          <input type="text" class="form-control" placeholder="Search for Friends!" name= "userName">
 		        </div>
@@ -30,8 +26,6 @@
 	</div>
 </div>
 
-
-
 	<div class='row'>
 		<div class="col-md-offset-3 col-md-9 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-6 cloudDiv1" id='makeBet'>
 			<div class="row">
@@ -43,6 +37,9 @@
 								<h1>Make A Bet</h1>
 								<label for="predition">Prediction:</label>
 								<input type="text" name="prediction" class="form-control" id="inputPrediction" >
+
+								<label for="predition">Challenge:</label>
+								<input type="text" name="challenge" class="form-control" id="inputPrediction" >
 
 								<label for="referee">Referee:</label>
 								<select class="form-control" name="referee" id="inputReferee">
@@ -91,11 +88,25 @@
 							<div id="cloud2" class="col-md-offset-1 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6">
 						  		<div id="betContainer">
 						  			<section>Take A Bet</section>
-						  				{{#each pendingBet}}
-											{{> pending_bet_info this}}
+						  				{{#each joinPending}}
+											{{> join_pending_bet_info this}}
 										{{/each}}
-										{{#each bet}}
-											{{> bet_info this}}
+										{{#each userOwnsBets}}
+											{{> owner_bet_info this}}
+										{{/each}}
+
+										{{#each joinedBet}}
+											{{> joined_bet_info this}}
+										{{/each}}
+										{{#each ownerPending}}
+											{{> owner_pending_bet_info this}}
+										{{/each}}
+
+										{{#each betReferee}}
+											{{> ref_bet_info this}}
+										{{/each}}
+										{{#each refPending}}
+											{{> ref_pending_bet_info this}}
 										{{/each}}
 								</div>
 							</div>
