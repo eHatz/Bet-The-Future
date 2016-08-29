@@ -88,7 +88,6 @@ router.post('/signUp', function(req, res) {
 })
 
 //====================HOME GET=============================
-
 router.get('/home', function(req, res) {
 	if (!req.isAuthenticated()) {
 		req.session.error = 'Please sign in!';
