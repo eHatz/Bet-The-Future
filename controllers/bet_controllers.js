@@ -132,11 +132,15 @@ router.get('/profile', function(req, res) {
         res.redirect('/');
         return false;
     };
-    models.User.findOne({where: {id: req.user.id}}).then(function(user_info) {
-    res.render('profile', {
-        user: user_info
-        })
-    console.log(user_info);
+    models.User.findOne({where: {id: req.user.id}}).then(function(user) {
+		user.getBets({ where: {adminPlayer: user.UserName} }).then(function(adminInBet) {
+			console.log(adminInBet);
+			res.render('profile', {
+				bet: adminInBet,
+				user:user
+			})
+		})
+
     }).catch(function(err){
         if(err){
             throw err;
