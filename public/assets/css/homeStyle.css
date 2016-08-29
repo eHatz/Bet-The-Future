@@ -151,11 +151,13 @@ a {
 }
 
 #friendsDiv{
-	width: 470px;
-	height: 120px;
-	overflow-y: scroll;
+	width: 442px;
+    height: 120px;
+    overflow-y: scroll;
     white-space: nowrap;
     margin-left: -20px;
+    display: inline-flex;
+    
 }
 
 p {
