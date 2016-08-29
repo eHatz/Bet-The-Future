@@ -174,7 +174,9 @@ router.post('/signUp', function(req, res) {
 	var newEmail = req.body.email;
 	console.log(newName, newEmail);
 		models.User.findAll({ 
+
 			//Check for email and username in the DB
+
 			// where: sequelize.or(
 			// 	{UserName: newName},
 			// 	{Email: newEmail}
