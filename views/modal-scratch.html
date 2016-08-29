@@ -1,39 +1,41 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="matchModal">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title">Best Match</h4>
-			</div>
-			<div class="modal-body">
-				<h2 id="matchName"></h2>
-				<img id="matchIMG">
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modalDiv">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Whoops!</h4>
+      </div>
+      <div class="modal-body">
+        <p id="modalText"></p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<script type="text/javascript">
-function modalIt(name, photo){
-	//Select Name and Image regions in the modal form
-	var modalMatchName = $("#matchName");
-	var modalIMG = $("#matchIMG");
+<!-- Small  -->
 
-	//Attach the name and image of the user's matched Friend
-	modalMatchName.text(name);
-	modalIMG.attr({
-		src: photo,
-		alt: name
-	});
+
+<!-- <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div> -->
+
+
+<script type="text/javascript">
+function modalIt(message){
+
+	//Grab modal text area
+	var modalTextDiv = $("#modalText");
+
+	//Attach error message
+	modalTextDiv.text(message);
 
 	//Activate the modal
 	console.log("go modal!");
-	$("#matchModal").modal("show");
+	$("#modalDiv").modal("show");
 }
 
 </script>
