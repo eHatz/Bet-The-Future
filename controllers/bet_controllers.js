@@ -144,7 +144,13 @@ router.get('/profile', function(req, res) {
     }) 
 });
 
-
+router.post('/bet-response', function(req, res) {
+	console.log('=====================================================')
+	console.log(req.body.betResponse)
+	console.log('=====================================================')
+	console.log('=====================================================')
+	res.redirect('/home');
+})
 
 //=====================SIGNUP POST=========================
 router.post('/signUp', function(req, res) {
@@ -153,10 +159,10 @@ router.post('/signUp', function(req, res) {
 	console.log(newName, newEmail);
 		models.User.findAll({ 
 			//Check for email and username in the DB
-			where: sequelize.or(
-				{UserName: newName},
-				{Email: newEmail}
-			)
+			// where: sequelize.or(
+			// 	{UserName: newName},
+			// 	{Email: newEmail}
+			// )
 		}).then(function(data){
 			//Grab incoming matched username and email, if any
 			var dataName = data[0].dataValues.UserName;

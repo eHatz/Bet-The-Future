@@ -20,9 +20,12 @@ body{
     width: 900px;
     height: 774px;
 }
-form{
+#betForm{
 	margin-top: 70px;
+}
 
+.betResForm {
+	float: right;
 }
 input{
 	border: 2px solid;
