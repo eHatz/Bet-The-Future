@@ -41,16 +41,20 @@ router.get('/home', function(req, res) {
 		user.getFriends().then(function(allFriends) {
 			user.getBets().then(function(userBets) {
 				var betReferee = [];
-				var userBetArr = [];				
+				var userBetArr = [];
+				var pendingBet = [];				
 				for (var i = 0; i < userBets.length; i++) {
 					if (userBets[i].referee === user.UserName) {
 						betReferee.push(userBets[i]);
+					} else if(userBets[i].pending === true) {
+						pendingBet.push(userBets[i]);
 					} else {
 						userBetArr.push(userBets[i]);
 					};
 				};
 				res.render('home', {
 					bet: userBetArr,
+					pendingBet: pendingBet,
 					ref: betReferee,
 					friends: allFriends,
 					user:user
@@ -148,11 +152,19 @@ router.get('/profile', function(req, res) {
     }) 
 });
 
-router.post('/bet-response', function(req, res) {
-	console.log('=====================================================')
-	console.log(req.body.betResponse)
-	console.log('=====================================================')
-	console.log('=====================================================')
+router.post('/bet-response/:id', function(req, res) {
+	if (req.body.betResponse === 'decline') {
+		models.Bet.destroy(
+			{where: {id: req.params.id}}
+		)
+	} else {
+		models.Bet.update( 
+			{pending: false}, 
+			{where: {id: req.params.id}}
+		).then(function() {
+			res.redirect('/')
+		})
+	};
 	res.redirect('/home');
 })
 

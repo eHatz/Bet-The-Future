@@ -5,6 +5,17 @@
 	<div class="betInfo">
 		<div class="usrInfo">
 				<h5 class="usrName"><strong><span id="captain">CAPTAIN: </span></strong>{{adminPlayer}}</h5>
+
+				<form method="POST" action="/bet-response/{{id}}" class="form-horizontal betResForm">
+					<button type="submit" value='decline' name='betResponse' class="btn btn-default">No Way Man!</button>
+				</form>
+
+				<form method="POST" action="/bet-response/{{id}}" class="form-horizontal betResForm">
+					<button type="submit" value='accept' name='betResponse' class="btn btn-default">You're On!</button>
+				</form>
+{{!-- 
+				<button class="acceptBetButton">You're On!</button>
+				<button class="declineBetButton">No Way Man!</button> --}}
 		</div>
 
 		<div class="prediction">
