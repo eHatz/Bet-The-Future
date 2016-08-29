@@ -82,7 +82,6 @@ passport.deserializeUser(function(obj, done) {
 module.exports = passport.use("loginStrategy", new LocalStrategy(
   function(loginUser, loginPassword, done) {
     User.findOne({where: {UserName: loginUser}}).then(function(user){
-    	console.log("userID console: ", user.id)
     	if (!user){
         	return done(null, false, {message: 'Incorrect username.'});
       	}
@@ -90,6 +89,7 @@ module.exports = passport.use("loginStrategy", new LocalStrategy(
         	return done(null, false, {message: 'Incorrect password.' });
       	}
       	//Successful login
+      console.log("userID console: ", user.id)
     	return done(null, user);
     });
   }
