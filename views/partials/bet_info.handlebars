@@ -7,11 +7,12 @@
 	<div class="betInfo">
 		<div class="usrInfo">
 				<h5 class="usrName"><strong><span id="captain">CAPTAIN: </span></strong>{{adminPlayer}}</h5>
-				<button class="acceptBetButton">Accept Bet!</button>
+				<button class="acceptBetButton">You're On!</button>
+				<button class="declineBetButton">No Way Man!</button>
 			</div>
 		<div class="prediction">
-			<p id="betInput"><strong><span>Prediction: </span></strong>{{prediction}}</p>
-			<p><strong><span>Challenge: </span></strong>{{challenge}}</p>
+			<p id="betInput"><strong><span>{{adminPlayer}}'s Prediction: </span></strong>{{prediction}}</p>
+			<p><strong><span>{{secondPlayer}}'s Challenge: </span></strong>{{challenge}}</p>
 		</div>
 
 		<div class="referee">
@@ -21,7 +22,7 @@
 
 		<div class="dayPrice">
 			<p class="betPrice"><strong><span>Bet Price: </span></strong>{{price}} dollars</p>
-			<p><strong><span>Judgement Day: </span></strong>{{judgmentDay}}</p>
+			<p><strong><span>Judgement Day: </span></strong>Aug 30 2016<!-- {{judgmentDay}} --></p>
 		</div>
 	</div>
 </div>
