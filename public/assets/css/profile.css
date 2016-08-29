@@ -84,13 +84,6 @@ a {
    
 }
 
-p {
-    display: inline-block;
-    font-family: helvetica;
-    line-height: 3px;
-    color: #683b00;
-    font-size: 15px;
-    }  
 
 .rightSide{
     display: inline-block;
@@ -132,7 +125,6 @@ span{
 .betInfo{
     width: inherit;
     margin-top: initial;
-    .referee{
     display: inline-flex;
     width: 500px;
 }
@@ -140,6 +132,13 @@ span{
     color:#f9891a;
 }
 
+#betInput{
+    line-height: initial;
+}
+/*.referee{
+    display: inline-flex;
+    width: 500px;*/
+/*}*/
 .betOwnerPic{
     width: 128px;
     height: 128px;
@@ -148,13 +147,43 @@ span{
     margin-left: 1px;
     margin-right: 8px;
 }
-#betInput{
+p {
+    font-size: 15px;
+    color: #683b00;
+    margin-left: 10px;
+    display: inline-table;
     line-height: initial;
 }
-.referee{
-    display: inline-flex;
-    width: 500px;
+.btn-default {
+    color: white;
+    background-color: #f9891a;
+    border-color: #00babf;
+    /* float: right; */
+    margin-left: 72%;
 }
+
+.acceptBetButton{
+    border-color: #04a3a3;
+    border: 1px solid #00bbba;
+    border-radius: 5px;
+    background-color: #f9891a;
+    padding: 8px;
+    color: white;
+    float: right;
+    margin-top: inherit;
+    margin-right: -71%;
+}
+
+.declineBetButton{
+    border-color: #04a3a3;
+    border: 1px solid #00bbba;
+    border-radius: 5px;
+    background-color: #f9891a;
+    padding: 8px;
+    color: white;
+    float: right;
+    margin-top: inherit;
+    margin-right: -71%;
 
 
 
