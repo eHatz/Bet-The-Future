@@ -184,7 +184,16 @@ p {
     float: right;
     margin-top: inherit;
     margin-right: -71%;
+}
 
+#youreOn{
+    margin-top: 25%;
+
+}
+#noWayMan{
+    margin-left: 20px;
+
+}
 
 
 
