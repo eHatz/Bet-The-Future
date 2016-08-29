@@ -3,7 +3,7 @@ var express = require('express');
 var methodO = require('method-override');
 var bodyParse = require('body-parser');
 var router = express.Router();
-
+var sequelize = require ('sequelize');
 var app = express();
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
@@ -172,27 +172,29 @@ router.post('/bet-response/:id', function(req, res) {
 router.post('/signUp', function(req, res) {
 	var newName = req.body.userName;
 	var newEmail = req.body.email;
+	var dataName;
+	var dataEmail;
+
 	console.log(newName, newEmail);
 		models.User.findAll({ 
-
-			//Check for email and username in the DB
-
-			// where: sequelize.or(
-			// 	{UserName: newName},
-			// 	{Email: newEmail}
-			// )
+			// Check for email and username in the DB
+			where: sequelize.or(
+				{UserName: newName},
+				{Email: newEmail}
+			)
 		}).then(function(data){
-			//Grab incoming matched username and email, if any
-			var dataName = data[0].dataValues.UserName;
-			var dataEmail = data[0].dataValues.Email;
-			console.log(dataName, dataEmail);
-			//redirect to signup if email or username matches
-			if (dataName === newName){
-				console.log("That Username is already in use");
-				res.redirect("/signUp");
-			}else if (dataEmail === newEmail){
-				console.log("That email is already in use");
-				res.redirect("/signUp");
+			if(data.length){
+				//Grab incoming matched username and email, if any
+				dataName = data[0].dataValues.UserName;
+				dataEmail = data[0].dataValues.Email;
+				//redirect to signup if email or username matches
+				if (dataName === newName){
+					console.log("That Username is already in use");
+					res.redirect("/signUp");
+				}else{
+					console.log("That email is already in use");
+					res.redirect("/signUp");
+				}
 			}else{
 			//Otherwise, continue adding the user
 				models.User.create({
