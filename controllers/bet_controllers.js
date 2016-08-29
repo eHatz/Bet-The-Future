@@ -148,19 +148,44 @@ router.get('/profile', function(req, res) {
 
 //=====================SIGNUP POST=========================
 router.post('/signUp', function(req, res) {
-	models.User.create({
-		FirstName: req.body.firstName,
-		LastName: req.body.lastName,
-		Email: req.body.email,
-		UserName: req.body.userName,
-		Password: req.body.password,
-		ImageLink: req.body.image
-	}).then(function() {
-		res.redirect('/');
-	}).catch(function(err) {
-		throw err;
-	});
-});
+	var newName = req.body.userName;
+	var newEmail = req.body.email;
+	console.log(newName, newEmail);
+		models.User.findAll({ 
+			//Check for email and username in the DB
+			where: sequelize.or(
+				{UserName: newName},
+				{Email: newEmail}
+			)
+		}).then(function(data){
+			//Grab incoming matched username and email, if any
+			var dataName = data[0].dataValues.UserName;
+			var dataEmail = data[0].dataValues.Email;
+			console.log(dataName, dataEmail);
+			//redirect to signup if email or username matches
+			if (dataName === newName){
+				console.log("That Username is already in use");
+				res.redirect("/signUp");
+			}else if (dataEmail === newEmail){
+				console.log("That email is already in use");
+				res.redirect("/signUp");
+			}else{
+			//Otherwise, continue adding the user
+				models.User.create({
+					FirstName: req.body.firstName,
+					LastName: req.body.lastName,
+					Email: newEmail,
+					UserName: newName,
+					Password: req.body.password,
+					ImageLink: req.body.image
+				}).then(function() {
+					res.redirect('/');
+				}).catch(function(err){
+					throw err;
+				});
+			}
+		})	
+	})
 
 //=====================HOME POST========================
 router.post('/create-bet', function(req, res){
