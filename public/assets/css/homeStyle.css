@@ -11,14 +11,14 @@ body{
 
 .cloudDiv1{
 	background-image: url("../images/cloud2.png");
-	background-position: -100% 0%;
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	position: absolute;
-	transform: translateY(-50%);
-	top:65%;
-	width: 900px;
-	height: 700px;
+    background-position: -100% 0%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 72%;
+    width: 900px;
+    height: 774px;
 }
 form{
 	margin-top: 70px;
@@ -59,13 +59,13 @@ label{
 }
 .cloudDiv2{
 	background-image: url("../images/cloud2.png");
-	background-position: -100% 100%;
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	position: absolute;
-	transform: translateY(-50%);
-	top:164%;
-	width: 953px;
+    background-position: -100% 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 183%;
+    width: 953px;
     height: 852px;
 }
 
@@ -134,7 +134,7 @@ a {
 	font-size: 12px;
 	display: inline-flex;
 	margin-top: 10px;
-	width: 573px;
+	width: 611px;
 	height: initial;
 	
 
@@ -163,6 +163,12 @@ p {
 	color: #683b00;
 	margin-left: 10px;
 	display: inline-table;
+	line-height: initial;
+}
+
+
+
+
 
 	
 }
@@ -225,7 +231,7 @@ h5{
 
 }
 .betInfo{
-	width: 370px;
+	width: inherit;
 	margin-top: initial;
 
 
@@ -258,6 +264,9 @@ span{
 #searchUsers{
 	margin-left: 33%;
 	margin-top: 2%;
+}
+.prediction{
+	width: 90%;
 }
 
 
