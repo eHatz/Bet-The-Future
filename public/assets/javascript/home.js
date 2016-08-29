@@ -1,5 +1,5 @@
-
-module.exports = function modalIt(message, $){
+//Possibly unneeded modal function
+function modalIt(message){
 
 	//Grab modal text area
 	var modalTextDiv = $("#modalText");
@@ -9,5 +9,6 @@ module.exports = function modalIt(message, $){
 
 	//Activate the modal
 	console.log("go modal!");
-	$("#modalDiv").modal("show");
+	$("#errorModal").modal("show");
 }
+
