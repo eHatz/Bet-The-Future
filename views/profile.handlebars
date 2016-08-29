@@ -35,8 +35,17 @@
 					</div>
 
 					<div class="profileBets">
-						{{#each bet}}
-							{{> profile_bets this}}						
+						{{#each userOwnsBets}}
+							{{> owner_bet_info this}}
+						{{/each}}
+						{{#each ownerPending}}
+							{{> owner_pending_bet_info this}}
+						{{/each}}
+						{{#each betReferee}}
+							{{> ref_bet_info this}}
+						{{/each}}
+						{{#each refPending}}
+							{{> ref_pending_bet_info this}}
 						{{/each}}
 					</div>
 				</div>
