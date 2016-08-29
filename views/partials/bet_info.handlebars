@@ -2,14 +2,22 @@
 	<div class="betOwnerPic">
 		<img class="betOwnerPic" src="{{adminImageLink}}">
 	</div>
-
-	
 	<div class="betInfo">
 		<div class="usrInfo">
 				<h5 class="usrName"><strong><span id="captain">CAPTAIN: </span></strong>{{adminPlayer}}</h5>
+
+				<form method="POST" action="/bet-response" class="form-horizontal betResForm">
+					<button type="submit" value='decline' class="btn btn-default">No Way Man!</button>
+				</form>
+
+				<form method="POST" action="/bet-response" class="form-horizontal betResForm">
+					<button type="submit" value='accept' class="btn btn-default">You're On!</button>
+				</form>
+{{!-- 
 				<button class="acceptBetButton">You're On!</button>
-				<button class="declineBetButton">No Way Man!</button>
-			</div>
+				<button class="declineBetButton">No Way Man!</button> --}}
+		</div>
+
 		<div class="prediction">
 			<p id="betInput"><strong><span>{{adminPlayer}}'s Prediction: </span></strong>{{prediction}}</p>
 			<p><strong><span>{{secondPlayer}}'s Challenge: </span></strong>{{challenge}}</p>
