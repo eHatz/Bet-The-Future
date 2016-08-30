@@ -1,25 +1,25 @@
-<div class="betBox" id="userlooses">
+<div class="betBox" id="userLooses">
 	<div class="betOwnerPic">
 		<img class="betOwnerPic" src="{{adminImageLink}}">
 	</div>
 	<div class="betInfo loser">
 		<div class="usrInfo">
-				<h5 class="usrName"><strong><span id="captain">CAPTAIN: </span></strong>{{adminPlayer}}</h5>
+				<p class="usrName"><strong><span id="captain">CAPTAIN: </span></strong>{{adminPlayer}}</p>
 		</div>
 
 		<div class="prediction">
-			<p id="betInput"><strong><span>{{adminPlayer}}'s Prediction: </span></strong>{{prediction}}</p>
-			<p><strong><span>{{secondPlayer}}'s Challenge: </span></strong>{{challenge}}</p>
+			<p id="betInput"><strong><span id="loserText">{{adminPlayer}}'s Prediction: </span></strong>{{prediction}}</p>
+			<p><strong><span id="loserText">{{secondPlayer}}'s Challenge: </span></strong>{{challenge}}</p>
 		</div>
 
 		<div class="referee">
-			<p><strong><span>Referee: </span></strong>{{referee}}</p>
-			<p><strong><span>Participants: </span></strong>{{adminPlayer}}, {{secondPlayer}}</p>
+			<p><strong><span id="loserText">Referee: </span id="loserText"></strong>{{referee}}</p>
+			<p><strong><span id="loserText">Participants: </span></strong>{{adminPlayer}}, {{secondPlayer}}</p>
 		</div>
 
 		<div class="dayPrice">
-			<p class="betPrice"><strong><span>Bet Price: </span></strong>{{price}} dollars</p>
-			<p><strong><span>Judgement Day: </span></strong>Aug 30 2016<!-- {{judgmentDay}} --></p>
+			<p class="betPrice"><strong><span id="loserText">Bet Price: </span></strong>{{price}} dollars</p>
+			<p><strong><span id="loserText">Judgement Day: </span id="loserText"></strong>Aug 30 2016<!-- {{judgmentDay}} --></p>
 		</div>
 	</div>
 </div>
