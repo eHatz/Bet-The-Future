@@ -12,13 +12,19 @@
 // 	$("#errorModal").modal("show");
 // }
 
-$('#myTabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
-$('#something').html('nope');
+//Check password matching
+$(document).ready(function(){
+	$("#confirmPassword").onchange = matchPassword;
+});
 
-$('#myTabs a[href="#profile"]').tab('show') // Select tab by name
-$('#myTabs a:first').tab('show') // Select first tab
-$('#myTabs a:last').tab('show') // Select last tab
-$('#myTabs li:eq(2) a').tab('show') // Select third tab (0-indexed)
+function matchPassword(){
+	var inputPassword = $("#inputPassword").val();
+	var confirmPassword = $("#confirmPassword").val();
+
+	if (inputPassword != confirmPassword){
+		confirmPassword.setCustomValidity("Passwords must match");
+	} else {
+		confirmPassword.setCustomValidity("");
+	}
+};
+

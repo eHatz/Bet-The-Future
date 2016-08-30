@@ -65,7 +65,6 @@
 							</div>
 						</div>
 					</form>
-						
 				</div>
 			</div>
 		</div>
@@ -75,37 +74,52 @@
 	<div class='row'>
 		<div class="col-md-offset-1 col-md-9 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-7 cloudDiv2" id='takeBet'>
 			<div class="row">
-				<div id="cloud2" class="col-md-offset-4 col-md-7 col-sm-offset-4 col-sm-3 co-lg-7">		
+				<div id="cloud2" class="col-md-offset-4 col-md-7 col-sm-offset-4 col-sm-3 co-lg-7">
+
+				  	<div class="tabConatiner">
 						<div class="row">
 							<div id="cloud2" class="col-md-offset-1 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6">
+						  		<section>All Bets</section>
+						  		<ul class="nav nav-tabs">
+									<li class="active"><a data-toggle="tab" href="#activeBets">Active</a></li>
+									<li><a data-toggle="tab" href="#pendingBets">Pending</a></li>
+									<li><a data-toggle="tab" href="#refBets">You're the Ref</a></li>
+								</ul>
 						  		<div id="betContainer">
-						  			<section>Take A Bet</section>
-						  				{{#each joinPending}}
-											{{> join_pending_bet_info this}}
-										{{/each}}
-										{{#each userOwnsBets}}
-											{{> owner_bet_info this}}
-										{{/each}}
-
-										{{#each joinedBet}}
-											{{> joined_bet_info this}}
-										{{/each}}
-										{{#each ownerPending}}
-											{{> owner_pending_bet_info this}}
-										{{/each}}
-
-										{{#each betReferee}}
-											{{> ref_bet_info this}}
-										{{/each}}
-										{{#each refPending}}
-											{{> ref_pending_bet_info this}}
-										{{/each}}
-										{{#each betsWon}}
+						  			
+						  			<div class="tab-content">
+    									<div id="activeBets" class="tab-pane fade in active">
+							  				{{#each joinPending}}
+												{{> join_pending_bet_info this}}
+											{{/each}}
+											{{#each userOwnsBets}}
+												{{> owner_bet_info this}}
+											{{/each}}
+											{{#each betsWon}}
 											{{> user_wins this}}
 										{{/each}}
 										{{#each betsLost}}
 											{{> user_losses this}}
 										{{/each}}
+										</div>
+										<div id="pendingBets" class="tab-pane fade in active">
+											{{#each joinedBet}}
+												{{> joined_bet_info this}}
+											{{/each}}
+											{{#each ownerPending}}
+												{{> owner_pending_bet_info this}}
+											{{/each}}
+										</div>
+
+										<div id="refBets" class="tab-pane fade in active">	
+											{{#each betReferee}}
+												{{> ref_bet_info this}}
+											{{/each}}
+											{{#each refPending}}
+												{{> ref_pending_bet_info this}}
+											{{/each}}
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
