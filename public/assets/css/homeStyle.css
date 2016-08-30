@@ -185,6 +185,7 @@ p {
 #doThisButton{
 	margin-left: 133px;
 	background-color: #f9891a
+	
 }
 .usrInfo{
 	color: #00bbba;
@@ -273,6 +274,27 @@ span{
     border-color: #e0efef;
     margin-left: 0;
 }
+#menuTabs{
+display: -webkit-inline-box;
+margin-left: -91px;
+color: #f5f5f5;
+   
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a{
+cursor: default;
+background-color: #f9891a;
+border: 1px solid #00d0d2;
+border-bottom-color: #0ce9eb;
+color: white;
+
+
+
+
+}
+
+
+
 
 
 
