@@ -55,7 +55,8 @@ app.listen(PORT, function() {
     console.log("app is listening on port ", PORT);
 });
 
-//Heroku Deployment
+//Heroku Deployment 
+//********COMMENT OUT FOR LOCAL USE**********
 var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 connection.connect();
@@ -67,6 +68,9 @@ connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
 });
 
 connection.end();
+
+//********COMMENT OUT FOR LOCAL USE**********
+
 
 /////////// PASSPORT \\\\\\\\\\\\
 var User = models.User; 
