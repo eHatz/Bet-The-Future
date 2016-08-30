@@ -58,7 +58,6 @@ var models = require('./models');
 models.sequelize.sync()
 
 //Startup
-
 app.use('/', routes);
 
 var PORT = process.env.PORT || 3000;
