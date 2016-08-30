@@ -71,7 +71,6 @@ connection.end();
 
 //********COMMENT OUT FOR LOCAL USE**********
 
-
 /////////// PASSPORT \\\\\\\\\\\\
 var User = models.User; 
 
