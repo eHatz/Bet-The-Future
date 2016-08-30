@@ -79,8 +79,8 @@
 						<div id="cloud2" class="col-md-offset-1 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6">
 							<section>All Bets</section>
 
-							<ul class="nav nav-tabs">
-								<li><a href="#activeBets" data-toggle="tab">activeBets</a></li>
+							<ul class="nav nav-tabs" id="menuTabs">
+								<li class="active"><a href="#activeBets" data-toggle="tab">activeBets</a></li>
 								<li><a href="#pendingBets" data-toggle="tab">Pending</a></li>
 								<li><a href="#refBets" data-toggle="tab">You're Reffin</a></li>
 							</ul>
@@ -99,7 +99,6 @@
 									{{#each joinPending}}
 										{{> join_pending_bet_info this}}
 									{{/each}}
-
 									{{#each ownerPending}}
 										{{> owner_pending_bet_info this}}
 									{{/each}}
