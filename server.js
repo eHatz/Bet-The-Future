@@ -46,7 +46,15 @@ app.use(session({ secret: 'dromedary_Stampede' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Local dependencies
+var routes = require('./controllers/bet_controllers.js');
+var models = require('./models');
+
+//Sync 
+models.sequelize.sync()
+
 //Startup
+
 app.use('/', routes);
 
 var PORT = process.env.PORT || 3000;
@@ -57,6 +65,7 @@ app.listen(PORT, function() {
 
 //Heroku Deployment 
 //********COMMENT OUT FOR LOCAL USE**********
+
 var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 connection.connect();
