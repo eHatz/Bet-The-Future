@@ -14,11 +14,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-var routes = require('./controllers/bet_controllers.js');
-var models = require('./models');
-var User = models.User; 
-
-
+//Express setup
 var app = express();
 var router = express.Router();
 
@@ -43,7 +39,15 @@ app.use(session({ secret: 'dromedary_Stampede' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Local dependencies
+var routes = require('./controllers/bet_controllers.js');
+var models = require('./models');
+
+//Sync 
+models.sequelize.sync()
+
 //Startup
+
 app.use('/', routes);
 
 var PORT = process.env.PORT || 3000;
@@ -66,6 +70,7 @@ connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
 connection.end();
 
 /////////// PASSPORT \\\\\\\\\\\\
+var User = models.User; 
 
 passport.serializeUser(function(user, done) {
   done(null, user);
