@@ -12,9 +12,6 @@ function modalIt(message){
 	$("#errorModal").modal("show");
 }
 
-// id="inputPassword"
-// id="confirmPassword"
-
 //Check password matching
 $(document).ready(function(){
 	$("#confirmPassword").onchange = matchPassword;
