@@ -232,7 +232,8 @@ h5{
 
 }
 span{
-	color:#00bbba;
+	color:#08a3a0;
+	
 
 }
 .referee{
@@ -290,7 +291,7 @@ span{
 }
 
 #ownerBet{
-	background-color: #ffeb80;
+	background-color: #ffcb42;
 }
 #ownerPending{
 	background-color: turquoise;
@@ -302,12 +303,15 @@ span{
 	/*background-color: #ffeb80;*/
 }
 #joinedPending{
-	background-color: #8ff9f9;
+	background-color: #06e1e1;
 	color: #f9891a;
 
 }
 #refPending{
-	background-color: #c4fed2;
+	background-color: #683b00;
+}
+#refText{
+	color: #ffcb42;
 }
 
 
