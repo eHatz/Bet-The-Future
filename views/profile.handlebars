@@ -32,33 +32,27 @@
 								<h5 class="betsMade"><strong><span>Winning: </span></strong>58%</h5><br>
 								<h5 class="betsMade"><strong><span>Lost: </span></strong>32%</h5><br>
 								<h5 class="betsMade"><strong><span>Approval Rating: </span></strong>100%</h5>
-							</div>
+							</div><br>
 					</div>
 
 					
-					<ul class="nav nav-tabs" id="menuTabs">
-						<li class="active"><a href="#activeBets" data-toggle="tab">Active</a></li>
-						<li><a href="#pendingBets" data-toggle="tab">Pending</a></li>
-						<li><a href="#refBets" data-toggle="tab">You're Reffin</a></li>
-					</ul>
-
+					
 					<div class="profileBets">
+						<ul class="nav nav-tabs" id="menuTabs">
+							<li class="active"><a href="#activeBets" data-toggle="tab">Bets Won</a></li>
+							<li><a href="#pendingBets" data-toggle="tab">Best Lost</a></li>
+						</ul>
+
 						<div class="tab-content">
 							<div class="tab-pane active" id="activeBets">
-								{{#each userOwnsBets}}
-									{{> owner_bet_info this}}
-								{{/each}}
-								{{#each ownerPending}}
-									{{> owner_pending_bet_info this}}
+								{{#each betsWon}}
+									{{> user_wins this}}
 								{{/each}}
 							</div>
 								
 							<div class="tab-pane" id="pendingBets">
-								{{#each betReferee}}
-									{{> ref_bet_info this}}
-								{{/each}}
-								{{#each refPending}}
-									{{> ref_pending_bet_info this}}
+								{{#each betsLost}}
+									{{> user_losses this}}
 								{{/each}}
 							</div>
 						</div>
