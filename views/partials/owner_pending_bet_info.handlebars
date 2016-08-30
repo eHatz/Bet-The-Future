@@ -1,13 +1,10 @@
-<div class="betBox">
+<div class="betBox" id="ownerPending">
 	<div class="betOwnerPic">
 		<img class="betOwnerPic" src="{{adminImageLink}}">
 	</div>
 	<div class="betInfo">
 		<div class="usrInfo">
 			<h5 class="usrName"><strong><span id="captain">CAPTAIN: </span></strong>{{adminPlayer}}</h5>
-			<form method="POST" action="/bet-edit/{{id}}" class="form-horizontal betResForm">
-				<button type="submit" value='bet-edit' name='betEdit' class="btn btn-default">Edit</button>
-			</form>
 
 			<form method="POST" action="/bet-delete/{{id}}" class="form-horizontal betResForm">
 				<button type="submit" value='bet-delete' name='betDelete' class="btn btn-default">Delete</button>

@@ -71,8 +71,8 @@ label{
     position: absolute;
     transform: translateY(-50%);
     top: 183%;
-    width: 953px;
-    height: 852px;
+    width: 1012px;
+    height: 984px;
 }
 
 
@@ -185,6 +185,7 @@ p {
 #doThisButton{
 	margin-left: 133px;
 	background-color: #f9891a
+	
 }
 .usrInfo{
 	color: #00bbba;
@@ -225,7 +226,7 @@ h5{
 
 }
 .betInfo{
-	width: inherit;
+	width: 75%;
 	margin-top: initial;
 
 
@@ -271,6 +272,44 @@ span{
     border-color: #e0efef;
     margin-left: 0;
 }
+#menuTabs{
+	display: -webkit-inline-box;
+	margin-left: -91px;
+	color: #f5f5f5;
+   
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+	cursor: default;
+	background-color: #00bfbc;
+	border: 1px solid #00d0d2;
+	border-bottom-color: #0ce9eb;
+	color: white;
+}
+
+#ownerBet{
+	background-color: #ffeb80;
+}
+#ownerPending{
+	background-color: turquoise;
+}
+#joinedBet{
+	background-color: #ffeb80;
+}
+#activeBets{
+	/*background-color: #ffeb80;*/
+}
+#joinedPending{
+	background-color: #8ff9f9;
+	color: #f9891a;
+
+}
+#refPending{
+	background-color: #c4fed2;
+}
+
+
+
 
 
 
