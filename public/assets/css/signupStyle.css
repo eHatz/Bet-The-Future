@@ -38,8 +38,8 @@ input{
 
 .cloudDiv1{
 	background-image: url("../images/cloud.png");
-	background-position: -30% -5%;
-	background-size: contain;
+	background-position: 100% 100%;
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	position: absolute;
 	transform: translateX(20%);
@@ -52,7 +52,7 @@ h1{
 	color: #683b00;
 	letter-spacing: -1px;
 	text-align: center;
-	margin-right: -55%;
+	margin-right: -64%;
 }
 label{
 	font-size: 15px;
