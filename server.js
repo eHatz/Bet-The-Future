@@ -64,9 +64,10 @@ app.use(passport.session());
 //Startup
 app.use('/', routes);
 
-var port = 3000;
+var PORT = process.env.PORT || 3000;
+
 app.listen(port, function() {
-    console.log("app is listening");
+    console.log("app is listening on port ", PORT);
 });
 
 /////////// PASSPORT \\\\\\\\\\\\
