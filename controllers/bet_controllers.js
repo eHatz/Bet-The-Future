@@ -252,7 +252,7 @@ router.post('/add-friend/:id', function(req,res) {
 
 });
 
-//=====================GET PROFILE==========================
+//=====================PROFILE GET==========================
 router.get('/profile', function(req, res) {
     if (!req.isAuthenticated()) {
         req.session.error = 'Please sign in!';
