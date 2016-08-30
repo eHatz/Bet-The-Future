@@ -69,7 +69,7 @@ connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
 
 connection.end();
 
-//********COMMENT OUT FOR LOCAL USE**********
+//********COMMENT OUT FOR LOCAL USE***********
 
 /////////// PASSPORT \\\\\\\\\\\\
 var User = models.User; 
