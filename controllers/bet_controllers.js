@@ -12,6 +12,90 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 var server = require("../server.js");
 var models = require('../models');
 
+// Used in both profile and home page
+function getAllUserTables(req, res, handlebarsRoute) {
+		models.User.findOne({ where: {id: req.user.id} }).then(function(user) {
+		user.getFriends().then(function(allFriends) {
+			user.getBets().then(function(userBets) {
+				var betReferee = [];
+				var refPending = [];
+				var joinedBet = [];
+				var joinPending = [];
+				var userOwnsBets = [];
+				var ownerPending = [];
+				var betsWon = [];
+				var betsLost = [];
+				//all bets user has some association with
+				for (var i = 0; i < userBets.length; i++) {
+					// if user created bet and a winner has not been decided
+					if (userBets[i].adminPlayer === req.user.UserName && !userBets[i].winner) {
+						userOwnsBets.push(userBets[i]);
+
+					// user was invited to bet and a winner has not been decided
+					} else if (userBets[i].secondPlayer === req.user.UserName && !userBets[i].winner) {
+						joinedBet.push(userBets[i]); 
+					};
+
+					//if user is ref and a winner has not been decided
+					if (userBets[i].referee === req.user.UserName && !userBets[i].winner) {
+						betReferee.push(userBets[i]);
+					};
+					//user won bet
+					if (userBets[i].winner === req.user.UserName) {
+						betsWon.push(userBets[i]);
+
+					// user lost bet
+					} else if (userBets[i].winner) {
+						betsLost.push(userBets[i]);
+					}
+
+				};
+
+				//user is ref and bet is pending
+				for (var i = 0; i < betReferee.length; i++) {
+					if(betReferee[i].pending === true) {
+						var singleBet = betReferee.splice(i, 1);
+						refPending.push(singleBet[0]);
+						i--;
+					};
+				};
+				//user owns bet and it is pending
+				for (var i = 0; i < userOwnsBets.length; i++) {
+					if (userOwnsBets[i].pending === true) {
+						var singleBet = userOwnsBets.splice(i, 1);
+						ownerPending.push(singleBet[0]);
+						i--;
+					};
+				};
+				//user was invited to bet and it is pending
+				for (var i = 0; i < joinedBet.length; i++) {
+					if (joinedBet[i].pending === true) {
+						var singleBet = joinedBet.splice(i, 1);
+						joinPending.push(singleBet[0]);
+						i--;
+					};
+				};
+
+				res.render(handlebarsRoute, {
+					betReferee: betReferee,
+					refPending: refPending,
+					joinedBet: joinedBet, //bets that user is betting in
+					joinPending: joinPending, //bets that are pending for the user
+					userOwnsBets: userOwnsBets, //bets that user has created
+					ownerPending: ownerPending,
+					friends: allFriends,
+					betsWon: betsWon,
+					betsLost: betsLost,
+					user:user
+				})
+			})	
+		}) 
+		}).catch(function(err){
+			if(err){
+				throw err;
+			}
+	})
+};
 //==================LOGIN GET============================
 router.get('/', function (req, res) {
 	if (req.isAuthenticated()) {
@@ -94,81 +178,24 @@ router.get('/home', function(req, res) {
 		res.redirect('/');
 		return false;
 	};
-
-	models.User.findOne({ where: {id: req.user.id} }).then(function(user) {
-		user.getFriends().then(function(allFriends) {
-			user.getBets().then(function(userBets) {
-				var betReferee = [];
-				var refPending = [];
-				var joinedBet = [];
-				var joinPending = [];
-				var userOwnsBets = [];
-				var ownerPending = [];
-				
-				//all bets user has some association with
-				for (var i = 0; i < userBets.length; i++) {
-					// if user created bet
-					if (userBets[i].adminPlayer === req.user.UserName) {
-						userOwnsBets.push(userBets[i]);
-
-					//if user is ref
-					} else if (userBets[i].referee === req.user.UserName) {
-						betReferee.push(userBets[i]);
-
-					// user was invited to bet
-					} else {
-						joinedBet.push(userBets[i]); 
-					};
-				};
-
-				//user is ref and bet is pending
-				for (var i = 0; i < betReferee.length; i++) {
-					if(betReferee[i].pending === true) {
-						var singleBet = betReferee.splice(i, 1);
-						refPending.push(singleBet[0]);
-						i--;
-					};
-				};
-				//user owns bet and it is pending
-				for (var i = 0; i < userOwnsBets.length; i++) {
-					if (userOwnsBets[i].pending === true) {
-						var singleBet = userOwnsBets.splice(i, 1);
-						ownerPending.push(singleBet[0]);
-						i--;
-					};
-				};
-				//user was invited to bet and it is pending
-				for (var i = 0; i < joinedBet.length; i++) {
-					if (joinedBet[i].pending === true) {
-						var singleBet = joinedBet.splice(i, 1);
-						joinPending.push(singleBet[0]);
-						i--;
-					};
-				};
-
-				res.render('home', {
-					betReferee: betReferee,
-					refPending: refPending,
-					joinedBet: joinedBet, //bets that user is betting in
-					joinPending: joinPending, //bets that are pending for the user
-					userOwnsBets: userOwnsBets, //bets that user has created
-					ownerPending: ownerPending,
-					friends: allFriends,
-					user:user
-				})
-			})	
-		})
-	}).catch(function(err){
-		if(err){
-			throw err;
-		}
-	})
+	getAllUserTables(req, res, 'home');	
 });
 
 //=====================HOME/CREATE BET POST========================
 router.post('/create-bet', function(req, res){
-	models.User.findOne({ where: {id: parseInt(req.body.participant)} }).then(function(secondPlayer) {
-		console.log(secondPlayer);
+	var participantId = parseInt(req.body.participant);
+	var refereeName = req.body.referee;
+	//getting the id of the referee, and the username of the second player
+	models.User.findAll({ where: {$or:[{id: participantId}, {UserName: refereeName}]} }).then(function(playerRef) {
+		var secondPlayer;
+		var referee;
+		for (var i = 0; i < playerRef.length; i++) {
+			if (playerRef[i].id === participantId) {
+				secondPlayer = playerRef[i];
+			} else if (playerRef[i].UserName === refereeName) {
+				referee = playerRef[i];
+			};
+		}
 		models.Bet.create({
 			adminPlayer:req.user.UserName,
 			adminImageLink: req.user.ImageLink,
@@ -181,17 +208,11 @@ router.post('/create-bet', function(req, res){
 			judgmentDay: req.body.judgementDay
 
 		}).then(function(group) {
-			var playersSelected = req.body.participant;
-			//checkbox allows more than one user but if only one is selcted the data type is number not array
-			if (typeof playersSelected === 'string') {
-				playersSelected = [req.body.participant];
-			} else {
-				playersSelected = req.body.participant;
-			};
-
-			playersSelected.push((req.user.id).toString()); //adds owner to array in order to add to associaion
-			return group.addUsers(playersSelected);
-
+			var allParticipants = [];
+			allParticipants.push(req.user.id); //adds owner to array in order to add to associaion
+			allParticipants.push(secondPlayer.id);
+			allParticipants.push(referee.id);
+			return group.addUsers(allParticipants);
 		}).then(function() {
 			res.redirect('/home');
 		}).catch(function(err) {
@@ -259,74 +280,7 @@ router.get('/profile', function(req, res) {
         res.redirect('/');
         return false;
     };
-
-	models.User.findOne({ where: {id: req.user.id} }).then(function(user) {
-		user.getFriends().then(function(allFriends) {
-			user.getBets().then(function(userBets) {
-				var betReferee = [];
-				var refPending = [];
-				var joinedBet = [];
-				var joinPending = [];
-				var userOwnsBets = [];
-				var ownerPending = [];
-				
-				//all bets user has some association with
-				for (var i = 0; i < userBets.length; i++) {
-					// if user created bet
-					if (userBets[i].adminPlayer === req.user.UserName) {
-						userOwnsBets.push(userBets[i]);
-
-					//if user is ref
-					} else if (userBets[i].referee === req.user.UserName) {
-						betReferee.push(userBets[i]);
-
-					// user was invited to bet
-					} else {
-						joinedBet.push(userBets[i]); 
-					};
-				};
-
-				//user is ref and bet is pending
-				for (var i = 0; i < betReferee.length; i++) {
-					if(betReferee[i].pending === true) {
-						var singleBet = betReferee.splice(i, 1);
-						refPending.push(singleBet[0]);
-						i--;
-					};
-				};
-				//user owns bet and it is pending
-				for (var i = 0; i < userOwnsBets.length; i++) {
-					if (userOwnsBets[i].pending === true) {
-						var singleBet = userOwnsBets.splice(i, 1);
-						ownerPending.push(singleBet[0]);
-						i--;
-					};
-				};
-				//user was invited to bet and it is pending
-				for (var i = 0; i < joinedBet.length; i++) {
-					if (joinedBet[i].pending === true) {
-						var singleBet = joinedBet.splice(i, 1);
-						joinPending.push(singleBet[0]);
-						i--;
-					};
-				};
-				res.render('profile', {
-					betReferee: betReferee,
-					refPending: refPending,
-					joinedBet: joinedBet, //bets that user is betting in
-					joinPending: joinPending, //bets that are pending for the user
-					userOwnsBets: userOwnsBets, //bets that user has created
-					ownerPending: ownerPending,
-					friends: allFriends,
-					user:user
-				})
-			})	
-		})
-	}).catch(function(err){
-	if(err){
-		throw err;
-	}
-	}) 
+	getAllUserTables(req, res, 'profile');
 });
 
 //=====================ACCEPT OR DECLINE BET POST==========================

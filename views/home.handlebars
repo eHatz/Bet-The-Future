@@ -75,15 +75,7 @@
 	<div class='row'>
 		<div class="col-md-offset-1 col-md-9 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-7 cloudDiv2" id='takeBet'>
 			<div class="row">
-				<div id="cloud2" class="col-md-offset-4 col-md-7 col-sm-offset-4 col-sm-3 co-lg-7">
-					
-						{{!-- <div class="input-group">
-						  	<input id="searchBox" type="text" class="form-control" placeholder="Search">
-						  		<div class="input-group-btn">
-						   			<button id="searchButton" type="submit" class="btn btn-default">Submit</button>
-					   			</div>
-				  		</div> --}}
-							
+				<div id="cloud2" class="col-md-offset-4 col-md-7 col-sm-offset-4 col-sm-3 co-lg-7">		
 						<div class="row">
 							<div id="cloud2" class="col-md-offset-1 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6">
 						  		<div id="betContainer">
@@ -107,6 +99,12 @@
 										{{/each}}
 										{{#each refPending}}
 											{{> ref_pending_bet_info this}}
+										{{/each}}
+										{{#each betsWon}}
+											{{> user_wins this}}
+										{{/each}}
+										{{#each betsLost}}
+											{{> user_losses this}}
 										{{/each}}
 								</div>
 							</div>

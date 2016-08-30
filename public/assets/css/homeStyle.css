@@ -272,6 +272,10 @@ span{
 	width: 90%;
 }
 
+.winner {
+	background-color: green;
+}
 
-
-
+.loser {
+	background-color: red;
+}
