@@ -42,7 +42,11 @@ app.use(bodyParser.json());
 
 //Passport middleware
 app.use(cookieParser())
-app.use(session({ secret: 'dromedary_Stampede' }));
+app.use(session({ 
+  secret: 'dromedary_Stampede',
+    resave: true,
+    saveUninitialized: true
+   }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -54,7 +58,6 @@ var models = require('./models');
 models.sequelize.sync()
 
 //Startup
-
 app.use('/', routes);
 
 var PORT = process.env.PORT || 3000;
@@ -63,24 +66,24 @@ app.listen(PORT, function() {
     console.log("app is listening on port ", PORT);
 });
 
-//Heroku Deployment 
-//********COMMENT OUT FOR LOCAL USE**********
+// //Heroku Deployment 
+// //********COMMENT OUT FOR LOCAL USE**********
 
-var connection = mysql.createConnection(process.env.JAWSDB_URL);
+// var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
-connection.connect();
+// connection.connect();
 
-connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-  if (err) throw err;
+// connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+//   if (err) throw err;
 
-  console.log('The solution is: ', rows[0].solution);
-});
+//   console.log('The solution is: ', rows[0].solution);
+// });
 
-connection.end();
+// connection.end();
 
-//********COMMENT OUT FOR LOCAL USE***********
+// //********COMMENT OUT FOR LOCAL USE***********
 
-/////////// PASSPORT \\\\\\\\\\\\
+// /////////// PASSPORT \\\\\\\\\\\\
 var User = models.User; 
 
 passport.serializeUser(function(user, done) {
