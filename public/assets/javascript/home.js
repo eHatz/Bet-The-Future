@@ -1,16 +1,16 @@
-//Possibly unneeded modal function
-function modalIt(message){
+// //Possibly unneeded modal function
+// function modalIt(message){
 
-	//Grab modal text area
-	var modalTextDiv = $("#modalText");
+// 	//Grab modal text area
+// 	var modalTextDiv = $("#modalText");
 
-	//Attach error message
-	modalTextDiv.text(message);
+// 	//Attach error message
+// 	modalTextDiv.text(message);
 
-	//Activate the modal
-	console.log("go modal!");
-	$("#errorModal").modal("show");
-}
+// 	//Activate the modal
+// 	console.log("go modal!");
+// 	$("#errorModal").modal("show");
+// }
 
 //Check password matching
 $(document).ready(function(){

@@ -75,10 +75,7 @@
 		<div class="col-md-offset-1 col-md-9 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-7 cloudDiv2" id='takeBet'>
 			<div class="row">
 				<div id="cloud2" class="col-md-offset-4 col-md-7 col-sm-offset-4 col-sm-3 co-lg-7">
-					
-					
-							
-						
+
 				  	<div class="tabConatiner">
 						<div class="row">
 							<div id="cloud2" class="col-md-offset-1 col-md-7 col-sm-offset-3 col-sm-10 col-lg-6">
@@ -98,8 +95,13 @@
 											{{#each userOwnsBets}}
 												{{> owner_bet_info this}}
 											{{/each}}
+											{{#each betsWon}}
+											{{> user_wins this}}
+										{{/each}}
+										{{#each betsLost}}
+											{{> user_losses this}}
+										{{/each}}
 										</div>
-
 										<div id="pendingBets" class="tab-pane fade in active">
 											{{#each joinedBet}}
 												{{> joined_bet_info this}}
