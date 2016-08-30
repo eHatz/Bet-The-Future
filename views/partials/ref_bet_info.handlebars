@@ -1,4 +1,4 @@
-<div class="betBox" id="refBets">
+<div class="betBox" id="refBox">
 	<div class="betOwnerPic">
 		<img class="betOwnerPic" src="{{adminImageLink}}">
 	</div>
@@ -17,17 +17,17 @@
 
 		<div class="prediction">
 			<p id="refText"><strong><span>{{adminPlayer}}'s Prediction: </span></strong>{{prediction}}</p>
-			<p><strong><span id="refText">{{secondPlayer}}'s Challenge: </span></strong>{{challenge}}</p>
+			<p id="refText"><strong><span>{{secondPlayer}}'s Challenge: </span></strong>{{challenge}}</p>
 		</div>
 
 		<div class="referee">
-			<p><strong><span id="refText">Referee: </span></strong>{{referee}}</p>
-			<p><strong><span id="refText">Participants: </span></strong>{{adminPlayer}}, {{secondPlayer}}</p>
+			<p id="refText"><strong><span>Referee: </span></strong>{{referee}}</p>
+			<p id="refText"><strong><span>Participants: </span></strong>{{adminPlayer}}, {{secondPlayer}}</p>
 		</div>
 
 		<div class="dayPrice">
-			<p class="betPrice"><strong><span>Bet Price: </span></strong>{{price}} dollars</p>
-			<p><strong><span id="refText">Judgement Day: </span></strong>Aug 30 2016<!-- {{judgmentDay}} --></p>
+			<p id="refText"class="betPrice"><strong><span>Bet Price: </span></strong>{{price}} dollars</p>
+			<p id="refText"><strong><span>Judgement Day: </span></strong>Aug 30 2016<!-- {{judgmentDay}} --></p>
 		</div>
 	</div>
 </div>

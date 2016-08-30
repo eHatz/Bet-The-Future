@@ -219,7 +219,13 @@ float: left;
     color: #f9d01a;
     margin-left: -1px;
 }
-
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    cursor: default;
+    background-color: #00bfbc;
+    border: 1px solid #00d0d2;
+    border-bottom-color: #0ce9eb;
+    color: white;
+}
 
 
 
