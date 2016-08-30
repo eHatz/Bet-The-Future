@@ -60,3 +60,9 @@ $('#refBets').click(function (e) {
 // 	}
 // };
 
+$('.nav-tabs a[href="#profile"]').tab('profile')
+$('.nav-tabs a[href="#messages"]').tab('messages')
+$('.nav-tabs a[href="#profile"]').tab('profile')
+
+
+

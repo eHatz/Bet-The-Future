@@ -1,4 +1,4 @@
-<div class="betBox">
+<div class="betBox" id="joinedPending">
 	<div class="betOwnerPic">
 		<img class="betOwnerPic" src="{{adminImageLink}}">
 	</div>
@@ -19,18 +19,18 @@
 		</div>
 
 		<div class="prediction">
-			<p id="betInput"><strong><span>{{adminPlayer}}'s Prediction: </span></strong>{{prediction}}</p>
-			<p><strong><span>{{secondPlayer}}'s Challenge: </span></strong>{{challenge}}</p>
+			<p><strong><span id="joinedPending">{{adminPlayer}}'s Prediction: </span ></strong>{{prediction}}</p>
+			<p><strong><span id="joinedPending">{{secondPlayer}}'s Challenge: </span></strong>{{challenge}}</p>
 		</div>
 
 		<div class="referee">
-			<p><strong><span>Referee: </span></strong>{{referee}}</p>
-			<p><strong><span>Participants: </span></strong>{{adminPlayer}}, {{secondPlayer}}</p>
+			<p><strong><span id="joinedPending">Referee: </span></strong>{{referee}}</p>
+			<p><strong><span id="joinedPending">Participants: </span></strong>{{adminPlayer}}, {{secondPlayer}}</p>
 		</div>
 
 		<div class="dayPrice">
-			<p class="betPrice"><strong><span>Bet Price: </span></strong>{{price}} dollars</p>
-			<p><strong><span>Judgement Day: </span></strong>Aug 30 2016<!-- {{judgmentDay}} --></p>
+			<p class="betPrice"><strong><span id="joinedPending">Bet Price: </span id="joinedPending"></strong>{{price}} dollars</p>
+			<p><strong><span id="joinedPending">Judgement Day: </span></strong >Aug 30 2016<!-- {{judgmentDay}} --></p>
 		</div>
 	</div>
 </div>
