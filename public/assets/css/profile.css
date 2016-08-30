@@ -122,7 +122,9 @@ span{
     margin-top: 74px;
     width: 615px;
     height: initial;
+    margin-bottom: -60px;
 }
+
 .betInfo{
     width: 75%;
     margin-top: initial;
@@ -148,7 +150,7 @@ span{
 }
 p {
     font-size: 15px;
-    color: #683b00;
+    color: #492a03;
     margin-left: 10px;
     display: inline-table;
     line-height: initial;
@@ -226,6 +228,9 @@ float: left;
     border-bottom-color: #0ce9eb;
     color: white;
 }
+.tab-content>.active {
+    display: table-row-group;
+    }
 
 
 
